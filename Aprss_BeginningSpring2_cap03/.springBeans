@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.5.2.201101121000-SR1]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[true]]></enableImports>
+	<configs>
+		<config>src/test/resources/beanFactoryLifeCycle.xml</config>
+		<config>src/test/resources/exampleContext.xml</config>
+		<config>src/test/resources/propertySchemaContext.xml</config>
+		<config>src/test/resources/testResourceConsumer.xml</config>
+		<config>src/test/resources/utilSchemaContext.xml</config>
+		<config>src/test/resources/testConfigWithAnnotations.xml</config>
+		<config>src/test/resources/testConfigAutowiring.xml</config>
+	</configs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

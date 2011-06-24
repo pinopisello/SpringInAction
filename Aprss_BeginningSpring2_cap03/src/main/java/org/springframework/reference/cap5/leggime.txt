@@ -1,0 +1,24 @@
+Validator
+
+Spring prevede l'intefaccia Validator per gestire validazione.
+
+Validator ha i seguenti metodi:
+
+boolean supports(Class<?> clazz) :puo' questo validator validare istanze Class<?>?
+
+validate(Object target, Errors errors):valida target e in caso di errori li aggiunge in errors
+
+
+ValidationUtils e' una helper class per semplificare tasks ripetititvi come
+
+
+
+
+
+ 
+
+
+
+
+
+

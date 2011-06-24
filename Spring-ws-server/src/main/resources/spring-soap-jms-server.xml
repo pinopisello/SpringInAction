@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+      http://www.springframework.org/schema/util	http://www.springframework.org/schema/util/spring-util-3.0.xsd
+      http://www.springframework.org/schema/oxm		http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd">
+
+    <!-- Trova e istanzia Endpoints annotati @Endpoint senza necessita di dichiaranli come <bean> 
+         Infatti l' annotazione @Endpoint di per se e' anche @Component!!
+    -->
+    <context:component-scan base-package="server_endpoints"></context:component-scan> 
+
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+
+	<bean id="connectionFactory" class="com.ibm.mq.jms.MQConnectionFactory">
+		<property name="transportType">
+			<value>1</value>
+		</property>
+		<!-- <property name="queue"><value>QA.KP.XCELYS.RESP</value></property> -->
+		<property name="queueManager">
+			<value>QSG3</value>
+		</property>
+		<property name="hostName">
+			<value>mvsd10c.crdc.kp.org</value>
+		</property>
+		<property name="port">
+			<value>1444</value>
+		</property>
+		<property name="channel">
+			<value>XCLS_ZOS.SVRCONN</value>
+		</property>
+	</bean>
+
+
+  <!-- 
+  	   Scansiona tutti e beans nel context annotati con @Endpoint e li registra internamente.Vedi AbstractAnnotationMethodEndpointMapping.initApplicationContext().
+       Viene interrogato dal MessageDispatcher.getEndpoint(messageContext) per mappare request verso uno degli endpoint registrati. 
+       Questo endpointMapping viene inserito in SoapMessageDispatcher automaticamente.Vedi MessageDispatcher.initEndpointMappings(). -->  
+  <bean id="payloadMapper" class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping" />
+
+	<bean id="messageDispatcher" class="org.springframework.ws.soap.server.SoapMessageDispatcher"/>
+
+
+	<!-- marshaller e endpointAdapter effecttuano il marshll/unmarshall prima che le requests colpicono gli endpoint, dopo che l'endpoint
+	     ha ritornato la risposta  -->
+   	<oxm:jaxb2-marshaller id="jaxb2marshaller" contextPath="com.mycompany.hr.schemas"/>
+   
+    <bean id="endpointAdapter"  class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+ 		<constructor-arg ref="jaxb2marshaller" />
+    </bean>
+
+
+ 
+
+	<bean	id="messageListnerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="destinationName" value="QA.KP.XCELYS.REQ" />
+		<property name="messageListener">
+			<bean
+				class="org.springframework.ws.transport.jms.WebServiceMessageListener">
+				<property name="messageFactory" ref="messageFactory" />
+				<property name="messageReceiver" ref="messageDispatcher" />
+			</bean>
+		</property>
+	</bean>
+
+
+
+</beans>

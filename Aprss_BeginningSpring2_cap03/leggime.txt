@@ -1,0 +1,155 @@
+#1)TestConfigFromCode
+
+Configurare Spring Beans tramite codiceinvece di usare xml.
+
+
+
+#2)TestConfigFromXml
+
+Esempio di come Spring gestisce i beans usando XML di configurazione.
+
+
+TightlyCoupled puo'inviare un messaggio sendMessage() usando un solo transport SMTP.
+LooselyCoupled puo' inviare un messaggio sendMessage() usando una qualsiasi implementazione transport.
+Tranport e' iniettato da spring [vedi spring_config.xml]
+
+
+#3)TestConfigWithAnnotations
+
+Esempio di bean che implementa InitializingBean [PropertyTypeExample].
+Il metodo afterPropertiesSet() viene chiamato dal container dopo che tutte le props sono state settate.
+Per funzionare, il "RequiredAnnotationBeanPostProcessor" o  <context:annotation-config/> deve essere 
+definito in testConfigWithAnnotations.xml.
+
+
+
+Esempio di @Required
+RequiredAnnotationBeanPostProcessor e' attivato in propertyExampleContext.xml.
+Commenta <property name="text" value="Hello World"/>   e vedi
+ org.springframework.beans.factory.BeanCreationException: 
+ Error creating bean with name 'pte' defined in class path resource [propertyExampleContext.xml]:
+  Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanInitializationException: Property 'text' is required for bean 'pte'
+
+
+#4)TestConfigAutowiring
+
+Esempio di Autowiring.
+In autowireContext.xml, LooselyCoupled ha costruttore conf con autowire in testConfigAutowiring.xml.
+LooselyCoupled riceve SmtpImpl come parametro dato che implementa stesso tipo Transport del cosntruttore.
+
+Stesso comportamento annotando @Autowired il costruttore di LooselyCoupled e settando 
+<context:annotation-config/> in  testConfigAutowiring2.xml.
+
+Se si aggiunge in testConfigAutowiring2.xml il secondo bean SoapImpl.java [che implementa Transport interf]
+il Spring Contaner throws una eccezzione UnsatisfiedDependencyException perche ci sono due candidati per
+il costruttore di LooselyCoupled e il container non sa quale usare.
+
+
+
+#5)TestBeanFactoryInterface
+
+Esempio di come Spring chiama le interfacce "Aware" quando implementate da un Bean Spring.
+
+
+#6)TestResourceAnnotation
+
+Esempio di come Spring processa l'annotazione @Resource.
+
+MovieFinder e' annotato @Resource in SimpleMovieLister.E' iniettato al bootstrap di Spring.
+Spring cerca PRIMA per un bean chiamato come il field annotato, se no lo trova passa a cercare by type.
+
+
+
+#7) TestComponentAnnotation
+
+Esempio di come beans possono essere dichiarati con annotazioni @Component,@Repository,@Service,@Controller
+invece che comparire nel file config xml.Il nome del bean nel container e' il nome della classe NON capitalizzato.
+Se si vuole dare un nome diverso , si usa @Component("nomediverso")
+
+
+Occorre settare <context:component-scan base-package="org.example"/> in testComponentAnnotation.xml
+per dire a Spring di cercare nel classpath per componenti annotati.
+
+Per usare uno scope diverso da Singleton, usare @Scope("prototype").[vedi SimpleComponent.java]
+
+
+#8) TestMessageSource
+
+Esempio dell'uso del'interfaccia MessageSource [implementata da ApplicationContext] per la gestione 
+di i18n .
+Basta definire un bean con id = "messageSource" e settare nella property "basenames" i nomi dei
+bundles dei messaggi internzaionalizzati [vedi testMessageSource.xml e TestMessageSource.java].
+
+MessageSource puo' essere anche iniettata in altri beans.
+Vedi sempre in TestMessageSource.java come MessageSource e' iniettata in Example.java.
+
+
+
+#9)TestApplicationEvents
+
+Esempio di come publicare ApplicationEvent attraverso un ApplicationEventPublisher  verso un ApplicationListener.
+
+Nell esempio, BlackListEvent.java e' pubblicato da EmailService.java verso BlackListNotifier.java.
+Vedi TestApplicationEvents.java.
+Attenzione:Il listener si registra con implements ApplicationListener<BlackListEvent>  e aggiungendolo
+come Spring managed bean.
+
+
+
+#10) TestResourceConsumer.xml
+
+Esempio di come Spring gestisce "resources", qualsiasi oggetto che sia assimilabile ad una URL, dichiarativamente.
+Bast creare :
+
+1)Un  bean ResourceConsumer.java che implementa List<Resource> getResources() .
+Resource e' istanza org.springframework.core.io.Resource.
+
+
+2)Nel testResourceConsumer.xml definire ResourceConsumer.java come managed bean
+e dichiarare le resources URLs:
+
+<property name="resources">
+         <list>
+            <value>classpath:log4j.properties</value>
+            <value>file:C:\miei\Workspaces\Spring\cap03\src\main\java\com\apress\coupling\Mailinglist.java</value>
+            <value>http://www.google.com</value>
+            <value>ftp://xcelys:72xquJFU@ftp.trcinc.com/startServerBackground.log.gz_txt</value>
+            <value>autowireContext.xml</value>
+         </list>
+      </property>
+   </bean>
+
+
+Ogni Resource viene a runtime mappata verso:
+
+UrlResource: 		caso delle url http, file,ftp, etc
+ClasspathResource:  caso classpath:log4j.properties
+
+
+
+11)Validator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

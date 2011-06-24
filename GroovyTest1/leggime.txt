@@ -1,0 +1,14 @@
+#1)TestSpringConfigXml
+
+Esempio di come Spring gestisce i beans usando XML di configurazione.
+
+
+TightlyCoupled puo'inviare un messaggio sendMessage() usando un solo transport SMTP.
+LooselyCoupled puo' inviare un messaggio sendMessage() usando una qualsiasi implementazione transport.
+Tranport e' iniettato da spring [vedi spring_config.xml]
+
+
+#2)
+
+
+
