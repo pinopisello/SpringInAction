@@ -1,0 +1,9 @@
+Hibernate transaction Management
+
+
+In spring le transazioni possono essere definite:
+
+ dichiarate in                      [<tx:advice> + <aop:advisor> in xml_declared_transaction_test.xml]
+ dichiarate tramite annotazioni      [<tx:annotation-driven /> in   annotated_transaction_test.xml + @Transactional nelle classi java ]
+ 
+ 
