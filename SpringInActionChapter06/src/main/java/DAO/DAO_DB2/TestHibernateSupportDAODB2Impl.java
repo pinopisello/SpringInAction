@@ -19,5 +19,5 @@ public class TestHibernateSupportDAODB2Impl  extends HibernateDaoSupport impleme
 	
 	 public Test getTest(Integer pk) {
          return getHibernateTemplate().get(Test.class, pk);
- }
+ }  
 }
