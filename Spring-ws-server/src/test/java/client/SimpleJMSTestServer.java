@@ -14,14 +14,14 @@ public class SimpleJMSTestServer  extends CommonTestCase{
 	public static void setup(){
 		  ctx =   new ClassPathXmlApplicationContext("classpath*:spring-soap-jms-server.xml"); 		  log.info("SimpleJMSTestClient setup");
 		  log.info("SimpleJMSTestServer setup");
-	}
+	} 
 	
 	
 	
 	@AfterClass
 	public static void cleanup(){
 		log.info("SimpleJMSTestServer cleanup");
-	}
+	}  ss
 
 	
 	@Test
