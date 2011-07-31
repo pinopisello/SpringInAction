@@ -14,7 +14,9 @@ import org.springframework.context.MessageSourceAware;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.ResourceLoader;
 
-public class SpringBeansInterfacesDummy implements DisposableBean,MessageSourceAware,ApplicationEventPublisherAware,ResourceLoaderAware,BeanFactoryAware,BeanClassLoaderAware,BeanNameAware,BeanPostProcessor{
+public class SpringBeansInterfacesDummy implements 
+DisposableBean,MessageSourceAware,ApplicationEventPublisherAware,
+ResourceLoaderAware,BeanFactoryAware,BeanClassLoaderAware,BeanNameAware,BeanPostProcessor{
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName)

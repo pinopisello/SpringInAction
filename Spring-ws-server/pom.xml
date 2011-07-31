@@ -10,18 +10,56 @@
 	<url>http://www.springframework.org/spring-ws</url>
 	<build>
 		<finalName>test-ws-server</finalName>
+		
+			<!-- Questa sezione per evitare che Eclipse m2e plugin si lamenti del fatto di non sapere quando lanciare maven-jaxb2-plugin .
+		Errore se sezione commenata e':
+	    Plugin execution not covered by lifecycle configuration: org.jvnet.jaxb2.maven2:maven-jaxb2-plugin:0.7.5:generate (execution: default, phase: compile)	pom.xml	/Spring-ws-server	line 56	Maven Project Build Lifecycle Mapping Problem
+		-->
+		<pluginManagement>
+		  <plugins>
+		    <plugin>
+		      <groupId>org.eclipse.m2e</groupId>
+		      <artifactId>lifecycle-mapping</artifactId>
+		      <version>1.0.0</version>
+		      <configuration>
+		        <lifecycleMappingMetadata>
+		          <pluginExecutions>
+		            <pluginExecution>
+		              <pluginExecutionFilter>
+		                <groupId>org.jvnet.jaxb2.maven2</groupId>
+		                <artifactId>maven-jaxb2-plugin</artifactId>
+		                <versionRange>[0.0.0,)</versionRange>
+		                <goals>
+		                  <goal>generate</goal>
+		                </goals>
+		              </pluginExecutionFilter>
+		              <action>
+		                <ignore />
+		              </action>
+		            </pluginExecution>
+		          </pluginExecutions>
+		        </lifecycleMappingMetadata>
+		      </configuration>
+		    </plugin>
+		  </plugins>
+		</pluginManagement>
+		
+		
+		
 		<plugins>
 			<plugin>
 				<groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<executions>
 					<execution>
+					<phase>compile</phase>
 						<goals>
 							<goal>generate</goal>
-						</goals>
+					    </goals>
 					</execution>
 				</executions>
 			</plugin>
+			
 			<plugin>
 				<inherited>true</inherited>
 				<groupId>org.apache.maven.plugins</groupId>

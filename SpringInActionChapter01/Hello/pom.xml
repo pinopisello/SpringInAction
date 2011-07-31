@@ -7,11 +7,9 @@
     <version>2.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.springinaction</groupId>
   <artifactId>Hello</artifactId>
   <packaging>jar</packaging>
   <name>Spring in Action 2E, Hello Example</name>
-  <version>2.0</version>
   <url>http://www.springinaction.com</url>
 
   <build>
