@@ -11,7 +11,8 @@
     <!-- Trova e istanzia Endpoints annotati @Endpoint senza necessita di dichiaranli come <bean> 
          Infatti l' annotazione @Endpoint di per se e' anche @Component!!
     -->
-    <context:component-scan base-package="server_endpoints"></context:component-scan> 
+    <context:component-scan base-package="server_endpoints"/>
+
 
     <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
 

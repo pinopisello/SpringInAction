@@ -14,7 +14,7 @@ public class SimpleJMSTestServer  extends CommonTestCase{
 	public static void setup(){
 		  ctx =   new ClassPathXmlApplicationContext("classpath*:spring-soap-jms-server.xml"); 		  log.info("SimpleJMSTestClient setup");
 		  log.info("SimpleJMSTestServer setup");
-	}
+	}commit 1
 	
 	
 	@AfterClass
@@ -24,10 +24,13 @@ public class SimpleJMSTestServer  extends CommonTestCase{
 
 	
 	@Test
-	public void sendTestJMS() {
+	public void sendTestJMS()throws InterruptedException{
 		DefaultMessageListenerContainer  messageListnerContainer = (DefaultMessageListenerContainer)ctx.getBean("messageListnerContainer");
 		messageListnerContainer.start();
-		System.out.println("DefaultMessageListenerContainer on");
-	}
+		System.out.println("DefaultMessageListenerContainer on");//Blocca il debugger qua , altrimenti il processo esce!
+																 //JUnit non permette di mettere un while(true) [lancia errore]
+																 //Meglio usare SimpleJMSTestServerNotUnit che permette while(true)
 
+	  }
+	
 }

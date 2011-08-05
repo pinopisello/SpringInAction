@@ -1,0 +1,26 @@
+Esempio per AOP.
+
+L' obbiettivo e' far si che Minstrel intercetti le chiamate a 
+ KnightOfTheRoundTable.embarkOnQuest() e logghi tutte le chiamata senza 
+ dover scrivere NULLA in KnightOfTheRoundTable.
+
+Cio' si fa nel seguente modo:
+
+
+1)Si dichiara Minstrel come un aspect, ossia QUALE BEAN DEVE ESSERE CHIAMATO:  <aop:aspect ref="minstrel">
+
+2)Si dichiara il pointcut, ossia QUALI EVENTI TRIGGERANO  L' ASPECT:
+ <aop:pointcut  id="questPointcut"  expression="execution(* *.embarkOnQuest(..)) and target(bean)" />
+
+3)Si dichiarano gli advice, ossia QUALI METHODI DELL' ASPECT CHAIMARE IN OCCASIONE DEI POINTCUTS:
+<aop:before  method="singBefore" pointcut-ref="questPointcut" arg-names="bean" />
+<aop:after method="singAfter"   pointcut-ref="questPointcut"   arg-names="bean" />
+
+
+
+
+
+
+
+
+

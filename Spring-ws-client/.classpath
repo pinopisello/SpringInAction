@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="lib/jta.jar"/>
 	<classpathentry kind="lib" path="lib/providerutil.jar"/>
 	<classpathentry kind="lib" path="/Spring-ws-server/target/classes"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Spring-ws-server"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
