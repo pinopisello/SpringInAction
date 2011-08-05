@@ -14,16 +14,16 @@ public class SimpleJMSTestServer  extends CommonTestCase{
 	public static void setup(){
 		  ctx =   new ClassPathXmlApplicationContext("classpath*:spring-soap-jms-server.xml"); 		  log.info("SimpleJMSTestClient setup");
 		  log.info("SimpleJMSTestServer setup");
-	}prova
+	}
 	
-	uno
+	
 	
 	@AfterClass
 	public static void cleanup(){
 		log.info("SimpleJMSTestServer cleanup");
 	}
 
-	due
+	
 	@Test
 	public void sendTestJMS()throws InterruptedException{
 		DefaultMessageListenerContainer  messageListnerContainer = (DefaultMessageListenerContainer)ctx.getBean("messageListnerContainer");
