@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class LooselyCoupled {
 	pluto
    private Transport transport;
-   
+   pippo
    public LooselyCoupled() {}
    
    

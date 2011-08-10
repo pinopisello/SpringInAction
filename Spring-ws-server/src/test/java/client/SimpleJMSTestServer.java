@@ -23,7 +23,7 @@ public class SimpleJMSTestServer  extends CommonTestCase{
 		log.info("SimpleJMSTestServer cleanup");
 	} 
 
-	  
+	
 	@Test
 	public void sendTestJMS()throws InterruptedException{
 		DefaultMessageListenerContainer  messageListnerContainer = (DefaultMessageListenerContainer)ctx.getBean("messageListnerContainer");
