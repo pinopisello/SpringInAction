@@ -34,6 +34,13 @@
 			<name>SpringSource Enterprise Bundle Repository - External Library Releases</name>
 			<url>http://repository.springsource.com/maven/libraries/external</url>
 		</repository>
+		<repository>
+			<id>Glassfis Maven Repo</id>
+			<name>Glassfis Maven Repo</name>
+			<url>http://maven.glassfish.org/content/groups/glassfish</url>
+		</repository>
+		
+		
 
 </repositories>
 
@@ -86,11 +93,11 @@
 
   <modules>
     <module>SpringInActionChapter01</module>
-   <!-- <module>SpringInActionChapter02</module>
-    <module>SpringInActionChapter03</module>
+    <module>SpringInActionChapter02</module>
+    <module>SpringInActionChapter05</module>
     <module>SpringInActionChapter04</module>
     <module>SpringInActionChapter09</module>
     <module>SpringInActionChapter16</module>
-    <module>SpringInActionRoadRantz</module>-->
+
   </modules>
 </project>

@@ -21,7 +21,7 @@ public class SimpleJMSTestServer  extends CommonTestCase{
 	@AfterClass
 	public static void cleanup(){
 		log.info("SimpleJMSTestServer cleanup");
-	}  ss
+	} 
 
 	
 	@Test

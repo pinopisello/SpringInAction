@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
@@ -7,7 +7,6 @@
 		<version>2.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.springinaction</groupId>
 	<artifactId>SpringInActionCh6</artifactId>
 	<packaging>jar</packaging>
 	<name>Spring in Action 2E, Spring Idol Example</name>
@@ -70,11 +69,11 @@
 			<scope>compile</scope>
 		</dependency>	
 			
-	<!--JBOssTS Per usare JTA, occorre una JTA implementation.Ho dovuto aggiungere un repo maven JBoss  -->	
-		<dependency>
-			<groupId>jboss.jbossts</groupId>
-			<artifactId>jbossjta</artifactId>
-			<version>4.9.0.GA</version>
-		</dependency>
+	<!--JBOssTS Per usare JTA, occorre una JTA implementation.Ho dovuto aggiungere un repo maven JBoss -->
+<dependency>
+  <groupId>jboss.jbossts</groupId>
+  <artifactId>jbossjta</artifactId>
+  <version>4.9.0.GA</version>
+</dependency>
 	</dependencies>
 </project>
