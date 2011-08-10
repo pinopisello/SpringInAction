@@ -10,7 +10,7 @@ public class Mailinglist {
    public void addAddress(final String address) {
       addresses.add(address);
    }
-     
+   
    public void send() {
       for( final String address : addresses) {
          transport.send(address);
