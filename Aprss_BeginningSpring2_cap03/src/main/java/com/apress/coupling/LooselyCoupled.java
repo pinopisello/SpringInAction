@@ -8,7 +8,7 @@ pluto
 pippo
    public LooselyCoupled() {}
    
-   
+   paperino
    @Autowired
    public LooselyCoupled(final Transport foo) {
       this.transport = foo;
