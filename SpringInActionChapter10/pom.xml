@@ -1,0 +1,79 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>com.springinaction</groupId>
+		<artifactId>sia</artifactId>
+		<version>2.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>SpringInActionCh6</artifactId>
+	<packaging>jar</packaging>
+	<name>Spring in Action 2E, Spring Idol Example</name>
+	<url>http://www.springinaction.com</url>
+
+
+<repositories>
+	<repository>
+		    <id>JBoss repo</id>
+			<name>JBoss repo</name>
+			<url>http://repository.jboss.org/maven2/</url>
+		</repository>
+</repositories>
+
+
+	<build>
+		<finalName>spring_in_action-ch6</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>8.4-701.jdbc4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
+		
+		<!-- Hibernate e Hibernate Annotation -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-annotations</artifactId>
+		    <version>3.4.0.GA</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javassist</groupId>
+		    <artifactId>javassist</artifactId>
+		    <version>3.4.GA</version>
+		</dependency>
+		
+		<!-- AspectJ necessario per transaction mamangement dichiarato in spring-config.xml  -->
+		<dependency>
+			<groupId>aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.5.3</version>
+			<scope>compile</scope>
+		</dependency>	
+			
+	<!--JBOssTS Per usare JTA, occorre una JTA implementation.Ho dovuto aggiungere un repo maven JBoss -->
+<dependency>
+  <groupId>jboss.jbossts</groupId>
+  <artifactId>jbossjta</artifactId>
+  <version>4.9.0.GA</version>
+</dependency>
+	</dependencies>
+</project>
