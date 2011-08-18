@@ -97,7 +97,7 @@
 	  		 <filterchain>
 	  				<replacestring from="package org.kp.BTLfindBenefitPackage.SEI"
 	  					           to="package org.kp.BTLfindBenefitPackage.server" />
-	  		 	     <replacestring from="org.kp.BTLfindBenefitPackage.SEI.BenefitBundle"
+	  		 	    <replacestring from="org.kp.BTLfindBenefitPackage.SEI.BenefitBundle"
 	  		 		  				to="org.kp.BTLfindBenefitPackage.server.BenefitBundle" />
 	  	</filterchain>
 	  	</copy> 

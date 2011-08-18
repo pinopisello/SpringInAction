@@ -16,7 +16,7 @@ public class SpitterRmiClient {
 	 private static  ApplicationContext ctx;
 	 private static SpitterService spitterService;
  
-	
+	  
   
   @BeforeClass
 	public static void setup(){

@@ -11,9 +11,9 @@
 
 	
   <property name="spitterService-java2wsdl-wsdl-path" value="${basedir}/webroot/WEB-INF/wsdl/SpitterService.wsdl"/>
-  <property name="spitterService-java2wsdl-service-class" value="com.habuma.spitter.remoting.jaxws.SEI.SpitterServiceEndpoint"/>
-  <property name="spitterService-java2wsdl-generated-path" location="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws"/>
-  <property name="spitterService-wsdl2java-package-name" value="com.habuma.spitter.remoting.jaxws"/>
+  <property name="spitterService-java2wsdl-service-class" value="com.habuma.spitter.remoting.jaxws.SEI.SpitterServiceEndpointImpl"/>
+  <property name="spitterService-java2wsdl-generated-path" location="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws.server"/>
+  <property name="spitterService-wsdl2java-package-name" value="com.habuma.spitter.remoting.jaxws.server"/>
   <property name="spitterService-wsdl2java-bindinig-path" value="${basedir}/bindings.txt"/>
 		 	 		
 
@@ -35,26 +35,23 @@
   	<pathelement location="${build.classes.dir}"/>
   </path>
   
-
-  <!-- WSDL 2 Java-->
-  <echo message="build-dir=${build-dir}"/>
-  <echo message="cxf-classpath=${cxf-classpath}"  />
-
-	
   <!-- Java 2 WSDL-->
   <echo message="input java class=${spitterService-java2wsdl-service-class}"  />
   <echo message="spitterService-java2wsdl-wsdl-path=${spitterService-java2wsdl-wsdl-path}"  />
 
-
+	
+  <!-- WSDL 2 Java-->
+  <echo message="build-dir=${build-dir}"/>
+  <echo message="cxf-classpath=${cxf-classpath}"  />
 
     	
-<!-- Genera  spitterService.wsdl a partire dalla classe che implementa il servizio  -->
- <target name="spitterServicejava2wsdl">
+<!-- Genera  SpitterService.wsdl a partire dalla classe che implementa il servizio  -->
+ <target name="spitterService-java2wsdl">
  	<java  classpathref="cxf-classpath" classname="org.apache.cxf.tools.java2ws.JavaToWS" fork="false">
  		<arg value="-verbose"/> 
  		<arg value="-wsdl"/>
  		<arg value="-address"/>
- 		<arg value="http://127.0.0.1:8080/spitterService/ws/spitterService"/>	
+ 		<arg value="http://127.0.0.1:8080/SpitterService/ws/spitterService"/>	
  		 <!--<arg value="-createxsdimports"/>-->
      	 <arg value="-o"/>
          <arg value="${spitterService-java2wsdl-wsdl-path}"/>    	
@@ -65,7 +62,6 @@
 	
 <!-- Genera e compila JAX-WS/JAXB code dal spitterService.wsdl -->
 	  <target name="spitterService-wsdl2java">
-	    
 	  	<echo message="Running WSDL2Java task"/>
 	    <delete quiet="true" dir="${spitterService-java2wsdl-generated-path}"/>
 	    <mkdir dir="${spitterService-java2wsdl-generated-path}"/>
