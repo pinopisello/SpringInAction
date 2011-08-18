@@ -97,9 +97,5 @@
 			<artifactId>cxf-bundle</artifactId>
 			<version>${cxf.version}</version>
 		</dependency>
-		
-
-		
-		
 	</dependencies>
 </project>

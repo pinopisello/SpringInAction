@@ -1,59 +1,82 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<parent>
-		<groupId>com.springinaction</groupId>
-		<artifactId>sia</artifactId>
-		<version>2.0</version>
-	</parent>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>SpringInActionChapter10_remoting-jaxws</artifactId>
+	<groupId>SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupport</groupId>
+	<artifactId>SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupport</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>SpringInActionChapter10_remoting-rm</name>
-	<url>http://www.springinaction.com</url>
-
 	<properties>
+		<junit.version>4.8.2</junit.version>
 		<cxf.version>2.4.1</cxf.version>
 	</properties>
-	<repositories>
-		<repository>
-			<id>JBoss repo</id>
-			<name>JBoss repo</name>
-			<url>http://repository.jboss.org/maven2/</url>
-		</repository>
-	</repositories>
-
-
 	<build>
-		<finalName>SpringInActionChapter10_remoting-rm</finalName>
+		<sourceDirectory>${basedir}/src</sourceDirectory>
+		<outputDirectory>${basedir}/webroot/WEB-INF/classes</outputDirectory>
 		<plugins>
+
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
-				 <groupId>org.apache.maven.plugins</groupId>
-  				 <artifactId>maven-war-plugin</artifactId>
- 			     <version>2.0.2</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0.2</version>
 				<configuration>
-				    <!-- <webappDirectory>${basedir}/webroot</webappDirectory> -->
+					<!-- <webappDirectory>${basedir}/webroot</webappDirectory> -->
 					<warSourceDirectory>${basedir}/webroot</warSourceDirectory>
-			        <excludes>**/client/*.class</excludes>
+					<excludes>**/client/*.class</excludes>
 				</configuration>
 			</plugin>
-			
+
+
+			<!-- <plugin> <groupId>org.apache.cxf</groupId> <artifactId>cxf-codegen-plugin</artifactId> 
+				<version>${cxf.version}</version> <executions> <execution> <id>generate-sources</id> 
+				<phase>generate-sources</phase> <configuration> <sourceRoot>${basedir}/src/main/java/org/kp/adapter/common</sourceRoot> 
+				<wsdlOptions> <wsdlOption> <wsdl>${basedir}/webroot/WEB-INF/wsdl/library.wsdl</wsdl> 
+				</wsdlOption> </wsdlOptions> </configuration> <goals> <goal>wsdl2java</goal> 
+				</goals> </execution> </executions> </plugin> -->
 		</plugins>
 	</build>
-
+	<repositories>
+		<repository>
+			<id>Apache Incubating Repository</id>
+			<name>Apache Incubating Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
 	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+			<version>1.8.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<!-- <dependency> <groupId>org.apache.cxf</groupId> <artifactId>cxf-tools-wsdlto-core</artifactId> 
+			<version>${cxf.version}</version> </dependency> <dependency> <groupId>org.apache.cxf</groupId> 
+			<artifactId>cxf-rt-frontend-jaxws</artifactId> <version>${cxf.version}</version> 
+			</dependency> <dependency> <groupId>org.apache.cxf</groupId> <artifactId>cxf-rt-transports-http</artifactId> 
+			<version>${cxf.version}</version> </dependency> -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-bundle</artifactId>
 			<version>${cxf.version}</version>
 		</dependency>
+
+
+
+
 	</dependencies>
 </project>

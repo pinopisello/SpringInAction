@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="SpitterService" targetNamespace="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="SpitterService" targetNamespace="http://pippo/SpitterService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://pippo/SpitterService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pippo/SpitterService" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://pippo/SpitterService">
   <xs:complexType name="spitter">
     <xs:sequence>
       <xs:element minOccurs="0" name="email" type="xs:string"/>
@@ -43,6 +43,16 @@
   <xs:complexType name="addSpittleResponse">
     <xs:sequence/>
   </xs:complexType>
+  <xs:element name="deleteSpittle" type="tns:deleteSpittle"/>
+  <xs:complexType name="deleteSpittle">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="deleteSpittleResponse" type="tns:deleteSpittleResponse"/>
+  <xs:complexType name="deleteSpittleResponse">
+    <xs:sequence/>
+  </xs:complexType>
   <xs:element name="getRecentSpittles" type="tns:getRecentSpittles"/>
   <xs:complexType name="getRecentSpittles">
     <xs:sequence>
@@ -54,16 +64,6 @@
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:spittle"/>
     </xs:sequence>
-  </xs:complexType>
-  <xs:element name="deleteSpittle" type="tns:deleteSpittle"/>
-  <xs:complexType name="deleteSpittle">
-    <xs:sequence>
-      <xs:element name="spittleId" type="xs:long"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="deleteSpittleResponse" type="tns:deleteSpittleResponse"/>
-  <xs:complexType name="deleteSpittleResponse">
-    <xs:sequence/>
   </xs:complexType>
 </xs:schema>
   </wsdl:types>
@@ -91,12 +91,12 @@
     <wsdl:part name="parameters" element="tns:getRecentSpittlesResponse">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="addSpittleResponse">
-    <wsdl:part name="parameters" element="tns:addSpittleResponse">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="addSpittle">
     <wsdl:part name="parameters" element="tns:addSpittle">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addSpittleResponse">
+    <wsdl:part name="parameters" element="tns:addSpittleResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="SpitterServiceEndpointInterf">
@@ -112,16 +112,16 @@
       <wsdl:output name="addSpittleResponse" message="tns:addSpittleResponse">
     </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getRecentSpittles">
-      <wsdl:input name="getRecentSpittles" message="tns:getRecentSpittles">
-    </wsdl:input>
-      <wsdl:output name="getRecentSpittlesResponse" message="tns:getRecentSpittlesResponse">
-    </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="deleteSpittle">
       <wsdl:input name="deleteSpittle" message="tns:deleteSpittle">
     </wsdl:input>
       <wsdl:output name="deleteSpittleResponse" message="tns:deleteSpittleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRecentSpittles">
+      <wsdl:input name="getRecentSpittles" message="tns:getRecentSpittles">
+    </wsdl:input>
+      <wsdl:output name="getRecentSpittlesResponse" message="tns:getRecentSpittlesResponse">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
@@ -145,21 +145,21 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getRecentSpittles">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getRecentSpittles">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getRecentSpittlesResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="deleteSpittle">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="deleteSpittle">
         <soap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="deleteSpittleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRecentSpittles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRecentSpittles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRecentSpittlesResponse">
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>

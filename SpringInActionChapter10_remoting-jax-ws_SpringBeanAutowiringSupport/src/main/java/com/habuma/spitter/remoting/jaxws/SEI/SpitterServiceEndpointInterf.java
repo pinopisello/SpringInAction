@@ -6,6 +6,7 @@ import com.habuma.spitter.domain.Spitter;
 import com.habuma.spitter.domain.Spittle;
 
 
+
 public interface SpitterServiceEndpointInterf  {
 
 
@@ -14,7 +15,7 @@ public interface SpitterServiceEndpointInterf  {
 
   public void deleteSpittle(long spittleId) ;
 
- 
+
   public List<Spittle> getRecentSpittles(int spittleCount) ;
 
  

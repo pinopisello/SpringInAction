@@ -13,26 +13,29 @@ import com.habuma.spitter.domain.Spittle;
                       
 @WebService(
 		name = "SpitterServiceEndpointInterf",//wsdl:portType name="..." DEVE ESSERE IL NOME DELLA INTEFACCIA QUESTA CLASSE IMPLEMENTA!!
-		serviceName="SpitterService",//wsdl:definitions name="..."  wsdl:binding name="...SoapBinding"  wsdl:service name="...",
-        targetNamespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService",
-        portName="SpitterServiceEndpointPort" //wsdl:port name="..." 
+		targetNamespace = "http://pippo/SpitterService",
+		portName="SpitterServiceEndpointPort", //wsdl:port name="..." 
+		serviceName="SpitterService"//wsdl:definitions name="..."  wsdl:binding name="...SoapBinding"  wsdl:service name="...",
   )     
    
-public class SpitterServiceEndpointImpl implements SpitterServiceEndpointInterf {
+public class SpitterServiceEndpointInterfImpl implements SpitterServiceEndpointInterf {
 
-    private static final Logger LOG = Logger.getLogger(SpitterServiceEndpointImpl.class.getName());
-
-
+    private static final Logger LOG = Logger.getLogger(SpitterServiceEndpointInterfImpl.class.getName());
+    
+    
+    
+	public void deleteSpittle( long spittleId) {
+	
+	}
+	
+	
 	public void addSpittle( @WebParam(name="spittle") Spittle spittle) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	public void deleteSpittle(@WebParam(name="spittleId") long spittleId) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 
 	public List<Spittle> getRecentSpittles(@WebParam(name="spittleCount") int spittleCount) {

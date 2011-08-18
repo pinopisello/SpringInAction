@@ -16,10 +16,10 @@
   
  
     <jaxws:endpoint 
-        id="BenefitBundlePackageProcessor"
-        implementor=" com.habuma.spitter.remoting.jaxws.SpitterServiceEndpoint"
+        id="SpitterServiceProcessor"
+        implementor="com.habuma.spitter.remoting.jaxws.server.SpitterServiceEndpointInterfImpl"
         wsdlLocation="WEB-INF/wsdl/SpitterService.wsdl"
-        address="/spitterService>
+        address="/spitterService">
     </jaxws:endpoint>
    
 

@@ -1,16 +1,10 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<parent>
-		<groupId>com.springinaction</groupId>
-		<artifactId>sia</artifactId>
-		<version>2.0</version>
-	</parent>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>SpringInActionCh6</artifactId>
+	<groupId>SpringInActionChapter10_spitter-service-common</groupId>
+	<artifactId>SpringInActionChapter10_spitter-service-common</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>Spring in Action 2E, Spring Idol Example</name>
-	<url>http://www.springinaction.com</url>
 
 
 <repositories>
@@ -36,6 +30,7 @@
 	</build>
 
 	<dependencies>
+	<!--  
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -48,7 +43,7 @@
 		</dependency>
 		
 		
-		<!-- Hibernate e Hibernate Annotation -->
+		 Hibernate e Hibernate Annotation 
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-annotations</artifactId>
@@ -61,7 +56,7 @@
 		    <version>3.4.GA</version>
 		</dependency>
 		
-		<!-- AspectJ necessario per transaction mamangement dichiarato in spring-config.xml  -->
+		AspectJ necessario per transaction mamangement dichiarato in spring-config.xml  
 		<dependency>
 			<groupId>aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -69,11 +64,11 @@
 			<scope>compile</scope>
 		</dependency>	
 			
-	<!--JBOssTS Per usare JTA, occorre una JTA implementation.Ho dovuto aggiungere un repo maven JBoss -->
+	JBOssTS Per usare JTA, occorre una JTA implementation.Ho dovuto aggiungere un repo maven JBoss 
 <dependency>
   <groupId>jboss.jbossts</groupId>
   <artifactId>jbossjta</artifactId>
   <version>4.9.0.GA</version>
-</dependency>
+</dependency>-->
 	</dependencies>
 </project>
