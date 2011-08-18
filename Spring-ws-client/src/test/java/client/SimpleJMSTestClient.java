@@ -32,8 +32,8 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 
 	@BeforeClass
 	public static void setup(){
-		  ctx =   new ClassPathXmlApplicationContext("classpath*:spring-soap-jms-client.xml"); 		  log.info("SimpleJMSTestClient setup");
-		  log.info("TestInjectAnnotaion setup");
+		  ctx =   new ClassPathXmlApplicationContext("classpath*:spring-soap-jms-client.xml"); 		
+		  log.info("SimpleJMSTestClient setup");
 	}
 	
 	

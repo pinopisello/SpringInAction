@@ -1,0 +1,62 @@
+
+package com.habuma.spitter.remoting.jaxws;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for getSpitterResponse complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="getSpitterResponse">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="return" type="{http://SEI.jaxws.remoting.spitter.habuma.com/}spitter" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "getSpitterResponse", propOrder = {
+    "_return"
+})
+public class GetSpitterResponse {
+
+    @XmlElement(name = "return")
+    protected Spitter _return;
+
+    /**
+     * Gets the value of the return property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Spitter }
+     *     
+     */
+    public Spitter getReturn() {
+        return _return;
+    }
+
+    /**
+     * Sets the value of the return property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Spitter }
+     *     
+     */
+    public void setReturn(Spitter value) {
+        this._return = value;
+    }
+
+}

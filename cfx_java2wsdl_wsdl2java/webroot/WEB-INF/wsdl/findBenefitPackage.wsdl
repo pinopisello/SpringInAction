@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="BenefitBundlePackageService" targetNamespace="http://Benefit_libs/BTLMediator/BenefitBundlePackageIntf" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://Benefit_libs/BTLMediator/BenefitBundlePackageIntf" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://Benefit_libs/BTLMediator/BenefitBundlePackageIntf" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://Benefit_libs/BTLMediator/BenefitBundlePackageIntf">
+  <xs:complexType name="BenefitBundle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BundleId" nillable="true" type="xs:string"/>
+      <xs:element name="BundleVersion" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="findBenefitPackage" type="findBenefitPackage"/>
+  <xs:complexType name="findBenefitPackage">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="Benefitbundle" type="BenefitBundle"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="findBenefitPackageResponse" type="findBenefitPackageResponse"/>
+  <xs:complexType name="findBenefitPackageResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="findBenefitPackageResponse">
+    <wsdl:part name="parameters" element="tns:findBenefitPackageResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findBenefitPackage">
+    <wsdl:part name="parameters" element="tns:findBenefitPackage">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="BenefitBundlePackageInterf">
+    <wsdl:operation name="findBenefitPackage">
+      <wsdl:input name="findBenefitPackage" message="tns:findBenefitPackage">
+    </wsdl:input>
+      <wsdl:output name="findBenefitPackageResponse" message="tns:findBenefitPackageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BenefitBundlePackageServiceSoapBinding" type="tns:BenefitBundlePackageInterf">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findBenefitPackage">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findBenefitPackage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findBenefitPackageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BenefitBundlePackageService">
+    <wsdl:port name="BenefitBundlePackageServicePort" binding="tns:BenefitBundlePackageServiceSoapBinding">
+      <soap:address location="http://127.0.0.1:8080/cfx_java2wsdl_wsdl2java/ws/findBenefitPackage"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

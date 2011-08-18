@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcatProjectProperties>
+    <rootDir>/webroot</rootDir>
+    <exportSource>false</exportSource>
+    <reloadable>true</reloadable>
+    <redirectLogger>false</redirectLogger>
+    <updateXml>true</updateXml>
+    <warLocation></warLocation>
+    <extraInfo></extraInfo>
+    <webPath>SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupport</webPath>
+    <webClassPathEntries>
+        <webClassPathEntry>/SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupport/webroot/WEB-INF/classes</webClassPathEntry>
+        <webClassPathEntry>/SpringInActionChapter10_spitter-service-common/target/classes</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/org.springframework.asm/3.0.5.RELEASE/org.springframework.asm-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/org.springframework.beans/3.0.5.RELEASE/org.springframework.beans-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/org.springframework.context/3.0.5.RELEASE/org.springframework.context-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/org.springframework.core/3.0.5.RELEASE/org.springframework.core-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/org.springframework.web/3.0.5.RELEASE/org.springframework.web-3.0.5.RELEASE.jar</webClassPathEntry>
+    </webClassPathEntries>
+</tomcatProjectProperties>

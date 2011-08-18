@@ -14,7 +14,7 @@ public class SimpleJMSTestServerNotUnit {
     
     
 	static{
-		  ctx =   new ClassPathXmlApplicationContext("classpath*:spring-soap-jms-server.xml"); 		  log.info("SimpleJMSTestClient setup");
+		  ctx =   new ClassPathXmlApplicationContext("classpath*:spring-soap-jms-server.xml"); 		 
 		  log.info("SimpleJMSTestServer setup");
 		  messageListnerContainer = (DefaultMessageListenerContainer)ctx.getBean("messageListnerContainer");
 		
@@ -23,7 +23,7 @@ public class SimpleJMSTestServerNotUnit {
 	 public static void main(String[] args)throws InterruptedException {
 		 messageListnerContainer.start();
 		 System.out.println("DefaultMessageListenerContainer on");
-		 while(true){
+		 while(true){//loop infinito per tenere la JVM attiva, altrimenti main terminerebbe e DefaultMessageListenerContainer andrebbe giu!
 			 Thread.sleep(5000);
 		 }
 		 

@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+
+
+<project default="" basedir=".">
+  <!-- -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y-->
+	
+	
+  <!-- Get common settings -->
+  <property name="build.classes.dir" location ="${basedir}/webroot/WEB-INF/classes"/>
+
+
+  <property name="findBenefitPackage-java2wsdl-wsdl-path" value="${basedir}/webroot/WEB-INF/wsdl/findBenefitPackage.wsdl"/>
+  <property name="findBenefitPackage-java2wsdl-service-class" value="org.kp.BTLfindBenefitPackage.SEI.BenefitBundlePackageInterfImpl"/>
+  <property name="findBenefitPackage-java2wsdl-generated-path" location="${basedir}/src/main/java/org/kp/BTLfindBenefitPackage/server"/>
+  <property name="findBenefitPackage-wsdl2java-package-name" value="org.kp.BTLfindBenefitPackage.server"/>
+  <property name="findBenefitPackage-wsdl2java-bindinig-path" value="${basedir}/bindings.txt"/>
+		 	 		
+	
+	
+  
+  <path id="cxf-classpath">
+    <fileset dir="C:\Program Files\Java\jdk1.6.0_25\jre\lib" includes="rt.jar"/>
+    <fileset dir="C:\Documents and Settings\W947523\.m2\repository\org\apache\neethi\neethi\3.0.0" includes="neethi-3.0.0.jar"/>
+    <fileset dir="C:\Documents and Settings\W947523\.m2\repository\org\apache\ws\xmlschema\xmlschema-core\2.0" includes="xmlschema-core-2.0.jar"/>
+    <fileset dir="C:\Documents and Settings\W947523\.m2\repository\org\apache\cxf\cxf-bundle\2.4.1" includes="cxf-bundle-2.4.1.jar"/>
+  	<fileset dir="C:\Documents and Settings\W947523\.m2\repository\wsdl4j\wsdl4j\1.6.2" includes="wsdl4j-1.6.2.jar"/>
+  	<fileset dir="C:\Documents and Settings\W947523\.m2\repository\org\apache\velocity\velocity\1.6.4" includes="velocity-1.6.4.jar"/>
+  	<fileset dir="C:\Documents and Settings\W947523\.m2\repository\commons-collections\commons-collections\3.2.1" includes="commons-collections-3.2.1.jar"/>
+  	<fileset dir="C:\Documents and Settings\W947523\.m2\repository\commons-lang\commons-lang\2.6" includes="commons-lang-2.6.jar"/>
+  	<fileset dir="C:\Documents and Settings\W947523\.m2\repository\com\sun\xml\bind\jaxb-xjc\2.2.1.1" includes="jaxb-xjc-2.2.1.1.jar"/>
+  	<fileset dir="C:\Documents and Settings\W947523\.m2\repository\com\sun\xml\bind\jaxb-impl\2.2.1.1" includes="jaxb-impl-2.2.1.1.jar"/>	
+  	
+  	<pathelement location="${build.classes.dir}"/>
+  </path>
+  
+  <!-- ECHO Section -->
+	
+  <!-- WSDL 2 Java-->
+  <echo message="build-dir=${build-dir}"/>
+  <echo message="cxf-classpath=${cxf-classpath}"  />
+
+	
+	
+  <!-- Java 2 WSDL-->
+  <echo message="input java class=${findBenefitPackage-java2wsdl-service-class}"  />
+  <echo message="findBenefitPackage-java2wsdl-wsdl-path=${findBenefitPackage-java2wsdl-wsdl-path}"  />
+
+
+    	
+<!-- Genera  findBenefitPackage.wsdl a partire dalla classe che implementa il servizio  -->
+ <target name="findBenefitPackagejava2wsdl">
+ 	<java  classpathref="cxf-classpath" classname="org.apache.cxf.tools.java2ws.JavaToWS" fork="false">
+ 		<arg value="-verbose"/> 
+ 		<arg value="-wsdl"/>
+ 		<arg value="-address"/>
+ 		<arg value="http://127.0.0.1:8080/cfx_java2wsdl_wsdl2java/ws/findBenefitPackage"/>	
+ 		 <!--<arg value="-createxsdimports"/>-->
+     	 <arg value="-o"/>
+         <arg value="${findBenefitPackage-java2wsdl-wsdl-path}"/>    	
+         <arg value="${findBenefitPackage-java2wsdl-service-class}"/>
+      </java>
+   </target>
+	
+	
+<!-- Genera e compila JAX-WS/JAXB code dal findBenefitPackage.wsdl -->
+	  <target name="findBenefitPackage-wsdl2java">
+	  	<echo message="Running WSDL2Java task"/>
+	    <delete quiet="true" dir="${findBenefitPackage-java2wsdl-generated-path}"/>
+	    <mkdir dir="${findBenefitPackage-java2wsdl-generated-path}"/>
+	    <java classpathref="cxf-classpath" fork="false"  classname="org.apache.cxf.tools.wsdlto.WSDLToJava">
+	      <!-- -d parameter sets the output root directory -->
+	      <arg value="-d"/>
+	      <arg value="${basedir}/src/main/java"/>
+	      <!-- -p parameter gives the package for CXF code generation -->
+	      <arg value="-p"/>
+	      <arg value="${findBenefitPackage-wsdl2java-package-name}"/>
+	      <!--<arg value="-client"/>-->
+	    	<!--<arg value="-server"/>-->
+	      <!--<arg value="-impl"/>-->
+	      <!--<arg value="-all"/>-->
+	    	<arg value="-all"/>
+	      <!-- -validate parameter requests WSDL validation before generation -->
+	      <arg value="-validate"/>
+		   <!-- Bindings file per evitare che wsdl2java generi JAXBElemet invece che String-->
+	      <arg value="-b"/>
+		  <arg value="${findBenefitPackage-wsdl2java-bindinig-path}"/>    	
+	    	
+	      <!-- actual input WSDL -->
+	      <arg value="${findBenefitPackage-java2wsdl-wsdl-path}"/>
+	    </java>
+	  	
+
+	  	<!-- Non voglio perdere il file implementazione ogni violta che rigenero gli skeletons -->
+	  	 <copy file="${basedir}/src/main/java/org/kp/BTLfindBenefitPackage/SEI/BenefitBundlePackageInterfImpl.java"
+	  		tofile="${basedir}/src/main/java/org/kp/BTLfindBenefitPackage/server/BenefitBundlePackageInterfImpl.java"
+	  	    overwrite="true">
+	  		 <filterchain>
+	  				<replacestring from="package org.kp.BTLfindBenefitPackage.SEI"
+	  					           to="package org.kp.BTLfindBenefitPackage.server" />
+	  		 	     <replacestring from="org.kp.BTLfindBenefitPackage.SEI.BenefitBundle"
+	  		 		  				to="org.kp.BTLfindBenefitPackage.server.BenefitBundle" />
+	  	</filterchain>
+	  	</copy> 
+	  	
+	  	
+	  </target>
+
+  <!-- Run the test client -->
+  <target name="run">  
+    <java classname="org.kp.adapter.client.WebServiceClient" failonerror="true"  fork="false">
+      <classpath path="${basedir}/WebRoot/WEB-INF/classes"/>
+      <classpath refid="cxf-classpath"/>
+      <!-- Set logging to avoid chatty output -->
+      <jvmarg value="-Djava.util.logging.config.file=${basedir}/logging.properties"/>
+<!--  Change the next line to set a different host  -->
+      <arg value="${host-name}"/>
+<!--  Change the next line to set a different port  -->
+      <arg value="${host-port}"/>
+<!--  Change the next line to set a different service endpoint  -->
+      <arg value="/cfx_library_exploded/"/>
+    </java>
+  </target>
+	
+
+</project>

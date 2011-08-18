@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomcatProjectProperties>
+    <rootDir>/webroot</rootDir>
+    <exportSource>false</exportSource>
+    <reloadable>true</reloadable>
+    <redirectLogger>true</redirectLogger>
+    <updateXml>true</updateXml>
+    <warLocation></warLocation>
+    <extraInfo></extraInfo>
+    <webPath>cfx_java2wsdl_wsdl2java</webPath>
+    <webClassPathEntries>
+        <webClassPathEntry>/cfx_java2wsdl_wsdl2java/webroot/WEB-INF/classes</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/apache/cxf/cxf-bundle/2.4.1/cxf-bundle-2.4.1.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/apache/neethi/neethi/3.0.0/neethi-3.0.0.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/apache/ws/xmlschema/xmlschema-core/2.0/xmlschema-core-2.0.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/spring-aop/3.0.5.RELEASE/spring-aop-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/spring-asm/3.0.5.RELEASE/spring-asm-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/spring-beans/3.0.5.RELEASE/spring-beans-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/spring-context/3.0.5.RELEASE/spring-context-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/spring-core/3.0.5.RELEASE/spring-core-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/spring-expression/3.0.5.RELEASE/spring-expression-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/springframework/spring-web/3.0.5.RELEASE/spring-web-3.0.5.RELEASE.jar</webClassPathEntry>
+        <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/wsdl4j/wsdl4j/1.6.2/wsdl4j-1.6.2.jar</webClassPathEntry>
+    </webClassPathEntries>
+</tomcatProjectProperties>
