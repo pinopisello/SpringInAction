@@ -46,7 +46,7 @@
   <xs:element name="deleteSpittle" type="tns:deleteSpittle"/>
   <xs:complexType name="deleteSpittle">
     <xs:sequence>
-      <xs:element name="arg0" type="xs:long"/>
+      <xs:element name="spittleid" type="xs:long"/>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="deleteSpittleResponse" type="tns:deleteSpittleResponse"/>

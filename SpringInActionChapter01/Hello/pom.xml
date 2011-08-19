@@ -10,7 +10,7 @@
   <artifactId>Hello</artifactId>
   <packaging>jar</packaging>
   <name>Spring in Action 2E, Hello Example</name>
-  <url>http://www.springinaction.com</url>
+  <url>http://www.springinaction.com</url>W
 
   <build>
     <finalName>hello</finalName>

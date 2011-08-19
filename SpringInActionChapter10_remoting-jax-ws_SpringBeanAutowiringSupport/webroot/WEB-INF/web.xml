@@ -4,14 +4,16 @@
   <display-name>CXFLibrary</display-name>
   <description>CXF Library Service</description>
   
-  <!-- Bootstrap di Spring -->
+  <!-- Bootstrap di Spring : legge i file di config spring dichiarati in "contextConfigLocation" (sotto ...)-->
   <listener>
       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
   <context-param>
   <!-- Parametri letti da ContextLoader -->
      <param-name>contextConfigLocation</param-name>
     <param-value> 
+      classpath:remote-jax-ws-service-context.xml
       classpath:META-INF/cxf/cxf.xml
       classpath:META-INF/cxf/cxf-extension-soap.xml
       classpath:META-INF/cxf/cxf-servlet.xml 

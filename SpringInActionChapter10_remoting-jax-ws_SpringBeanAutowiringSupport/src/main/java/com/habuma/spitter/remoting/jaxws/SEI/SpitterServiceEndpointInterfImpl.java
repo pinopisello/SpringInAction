@@ -7,6 +7,9 @@ import java.util.logging.Logger;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
 import com.habuma.spitter.domain.Spitter;
 import com.habuma.spitter.domain.Spittle;
 
@@ -19,9 +22,12 @@ import com.habuma.spitter.domain.Spittle;
 		serviceName="SpitterService"//wsdl:definitions name="..."  wsdl:binding name="...SoapBinding"  wsdl:service name="...",
   )     
    
-public class SpitterServiceEndpointInterfImpl implements SpitterServiceEndpointInterf {
+public class SpitterServiceEndpointInterfImpl extends SpringBeanAutowiringSupport implements SpitterServiceEndpointInterf {
 
     private static final Logger LOG = Logger.getLogger(SpitterServiceEndpointInterfImpl.class.getName());
+   
+    @Autowired
+    com.habuma.spitter.service.SpitterService spitterService;
     
     
     

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="spittleid" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,26 +27,26 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "deleteSpittle", propOrder = {
-    "arg0"
+    "spittleid"
 })
 public class DeleteSpittle {
 
-    protected long arg0;
+    protected long spittleid;
 
     /**
-     * Gets the value of the arg0 property.
+     * Gets the value of the spittleid property.
      * 
      */
-    public long getArg0() {
-        return arg0;
+    public long getSpittleid() {
+        return spittleid;
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Sets the value of the spittleid property.
      * 
      */
-    public void setArg0(long value) {
-        this.arg0 = value;
+    public void setSpittleid(long value) {
+        this.spittleid = value;
     }
 
 }
