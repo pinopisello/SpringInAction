@@ -1,0 +1,18 @@
+Esempio dicome si puo' costruire un WS  basato su CXF in cui si puo'
+iniettare Spring BEans.
+
+Basta :
+
+1)estendere SpringBeanAutowiringSupport nella classse che implementa il WS  e che ha una reference ad un  Spring Bean annotata con @Autowired.
+
+2)aggiungere il Spring context loader in web.xml [ <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>]
+
+3)creare un file configurazione Spring [remote-jax-ws-service-context.xml] che scansioni il classpath all ricerca dei managed beans
+
+4)aggiungere il nome del file 3) in  <param-name>contextConfigLocation</param-name> in web.xml
+
+
+Quando le requests dei client reggiungeranno il WS, la reference @Autowired viene creata ed iniettata, quindi puo' essere utilizzata nel WS stesso.
+
+
+

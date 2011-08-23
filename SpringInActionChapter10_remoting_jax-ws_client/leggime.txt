@@ -1,0 +1,21 @@
+Esempio di come generare un client jax-ws a [partire dal WSDL di un servizio.Si utilizza JaxWsPortProxyFactoryBean" .
+
+
+Bastano:
+
+1)la locazione del WSDl [p:wsdlDocumentUrl="http://localhost:8080/services/SpitterService?wsdl"]
+
+2)il nome del servizio [all 'interno del wsdl) [p:serviceName="spitterService"]
+
+3)il nome del port [all 'interno del wsdl)     [p:portName="spitterServiceHttpPort"]
+
+4) l' interfaccia definita dal servizio        [p:serviceInterface="com.habuma.spitter.service.SpitterService"]
+
+5) il nome del port [all 'interno del wsdl)     [p:namespaceUri="http://spitter.com"]
+
+
+Nel caso in questione, il WSDL e'in /SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupport/webroot/WEB-INF/wsdl/SpitterService.wsdl
+l, interfaccia e': /SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupport/src/main/java/com/habuma/spitter/remoting/jaxws/SEI/SpitterServiceEndpointInterf.java
+
+
+Per questi motivi questo proggetto "depends" su SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupport.

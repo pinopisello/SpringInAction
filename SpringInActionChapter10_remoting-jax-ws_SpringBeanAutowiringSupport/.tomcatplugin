@@ -10,6 +10,7 @@
     <webPath>SpitterService</webPath>
     <webClassPathEntries>
         <webClassPathEntry>/SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupport/webroot/WEB-INF/classes</webClassPathEntry>
+        <webClassPathEntry>/SpringInActionChapter10_spitter-service-common/target/classes</webClassPathEntry>
         <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar</webClassPathEntry>
         <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/apache/cxf/cxf-bundle/2.4.1/cxf-bundle-2.4.1.jar</webClassPathEntry>
         <webClassPathEntry>C:/Documents and Settings/W947523/.m2/repository/org/apache/neethi/neethi/3.0.0/neethi-3.0.0.jar</webClassPathEntry>

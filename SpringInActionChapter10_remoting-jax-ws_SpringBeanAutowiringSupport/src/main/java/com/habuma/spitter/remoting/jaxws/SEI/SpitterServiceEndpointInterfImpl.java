@@ -12,6 +12,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.habuma.spitter.domain.Spitter;
 import com.habuma.spitter.domain.Spittle;
+import com.habuma.spitter.service.SpitterService;
 
 
                       
@@ -22,7 +23,7 @@ import com.habuma.spitter.domain.Spittle;
 		serviceName="SpitterService"//wsdl:definitions name="..."  wsdl:binding name="...SoapBinding"  wsdl:service name="...",
   )     
    
-public class SpitterServiceEndpointInterfImpl extends SpringBeanAutowiringSupport implements SpitterServiceEndpointInterf {
+public class SpitterServiceEndpointInterfImpl extends SpringBeanAutowiringSupport implements SpitterService {
 
     private static final Logger LOG = Logger.getLogger(SpitterServiceEndpointInterfImpl.class.getName());
    
@@ -83,6 +84,62 @@ public class SpitterServiceEndpointInterfImpl extends SpringBeanAutowiringSuppor
             throw new RuntimeException(ex);
         }
     }
+
+
+	@Override
+	public void saveSpittle(Spittle spittle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void saveSpitter(Spitter spitter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public Spitter getSpitter(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void startFollowing(Spitter follower, Spitter followee) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public List<Spittle> getSpittlesForSpitter(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Spitter getSpitter(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Spittle getSpittleById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Spitter> getAllSpitters() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 
