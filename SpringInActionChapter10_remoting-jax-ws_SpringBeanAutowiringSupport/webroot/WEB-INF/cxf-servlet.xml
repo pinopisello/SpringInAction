@@ -4,10 +4,8 @@
       xmlns:jaxws="http://cxf.apache.org/jaxws"
       xmlns:soap="http://cxf.apache.org/bindings/soap"
       xsi:schemaLocation="
-         http://www.springframework.org/schema/beans 
-         http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-         http://cxf.apache.org/jaxws
-         http://cxf.apache.org/schemas/jaxws.xsd">
+       http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://cxf.apache.org/jaxws	http://cxf.apache.org/schemas/jaxws.xsd">
 
 <!-- Sono in cfx-bundle-2.4.1.jar -->
  <import resource="classpath:META-INF/cxf/cxf.xml" />
@@ -17,9 +15,9 @@
  
     <jaxws:endpoint 
         id="BenefitBundlePackageProcessor"
-        implementor=" com.habuma.spitter.remoting.jaxws.SpitterServiceEndpoint"
+        implementor="com.habuma.spitter.remoting.jaxws.server.SpitterServiceEndpointInterfImpl"
         wsdlLocation="WEB-INF/wsdl/SpitterService.wsdl"
-        address="/spitterService>
+        address="/spitterService">
     </jaxws:endpoint>
    
 
