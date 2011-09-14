@@ -12,7 +12,7 @@
 	
   <property name="spitterService-java2wsdl-wsdl-path" value="${basedir}/webroot/WEB-INF/wsdl/SpitterService.wsdl"/>
   <property name="spitterService-java2wsdl-service-class" value="com.habuma.spitter.remoting.jaxws.SEI.SpitterServiceEndpointImpl"/>
-  <property name="spitterService-java2wsdl-generated-path" location="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws.server"/>
+  <property name="spitterService-java2wsdl-generated-path" location="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server"/>
   <property name="spitterService-wsdl2java-package-name" value="com.habuma.spitter.remoting.jaxws.server"/>
   <property name="spitterService-wsdl2java-bindinig-path" value="${basedir}/bindings.txt"/>
 		 	 		
