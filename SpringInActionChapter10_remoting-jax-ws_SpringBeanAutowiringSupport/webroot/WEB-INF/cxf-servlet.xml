@@ -12,12 +12,12 @@
  <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
  <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
   
- aa
+
     <jaxws:endpoint 
         id="BenefitBundlePackageProcessor"
         implementor="com.habuma.spitter.remoting.jaxws.server.SpitterServiceEndpointInterfImpl"
         wsdlLocation="WEB-INF/wsdl/SpitterService.wsdl"
         address="/spitterService">
     </jaxws:endpoint>
-ss
+
 </beans>
