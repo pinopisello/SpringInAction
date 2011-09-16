@@ -3,20 +3,21 @@ package com.habuma.spitter.remoting.jaxws.server;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for addSpittle complex type.
+ * <p>Java class for getSpitterByIdResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="addSpittle">
+ * &lt;complexType name="getSpitterByIdResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="spittle" type="{http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService}spittle" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService}spitter" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +27,36 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "addSpittle", propOrder = {
-    "spittle"
+@XmlType(name = "getSpitterByIdResponse", propOrder = {
+    "_return"
 })
-public class AddSpittle {
+public class GetSpitterByIdResponse {
 
-    protected Spittle spittle;
+    @XmlElement(name = "return")
+    protected Spitter _return;
 
     /**
-     * Gets the value of the spittle property.
+     * Gets the value of the return property.
      * 
      * @return
      *     possible object is
-     *     {@link Spittle }
+     *     {@link Spitter }
      *     
      */
-    public Spittle getSpittle() {
-        return spittle;
+    public Spitter getReturn() {
+        return _return;
     }
 
     /**
-     * Sets the value of the spittle property.
+     * Sets the value of the return property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Spittle }
+     *     {@link Spitter }
      *     
      */
-    public void setSpittle(Spittle value) {
-        this.spittle = value;
+    public void setReturn(Spitter value) {
+        this._return = value;
     }
 
 }

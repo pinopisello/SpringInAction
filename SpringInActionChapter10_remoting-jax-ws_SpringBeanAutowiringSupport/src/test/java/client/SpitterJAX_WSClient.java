@@ -8,8 +8,16 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.habuma.spitter.domain.Spitter;
-import com.habuma.spitter.service.SpitterService;
+import com.habuma.spitter.remoting.jaxws.SEI.Spitter;
+import com.habuma.spitter.remoting.jaxws.SEI.SpitterService;
+
+
+/**
+ * Questo client usa JaxWsPortProxyFactoryBean che genera un proxy per il
+ * servizio definito nel wsdl [vedi in remote-jax-ws-service-context.xml]
+ * 
+ *
+ */
 
 public class SpitterJAX_WSClient {
 	 private static  Logger log = Logger.getAnonymousLogger();
@@ -27,7 +35,7 @@ public class SpitterJAX_WSClient {
 
 	@Test
 	public void getSpitter()throws InterruptedException{
-		Spitter spitter = spitterService.getSpitter(3);
+		Spitter spitter = spitterService.getSpitterById(3);
 		log.info("SpitterRmiClient spitter" + spitter.getFullName());
 	}
  

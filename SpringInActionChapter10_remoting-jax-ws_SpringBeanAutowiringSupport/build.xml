@@ -60,7 +60,7 @@
    </target>
 	
 	
-<!-- Genera e compila JAX-WS/JAXB code dal spitterService.wsdl -->
+<!-- Genera e compila JAX-WS/JAXB code dal SpitterService.wsdl -->
 	  <target name="spitterService-wsdl2java">
 	  	<echo message="Running WSDL2Java task"/>
 	    <delete quiet="true" dir="${spitterService-java2wsdl-generated-path}"/>

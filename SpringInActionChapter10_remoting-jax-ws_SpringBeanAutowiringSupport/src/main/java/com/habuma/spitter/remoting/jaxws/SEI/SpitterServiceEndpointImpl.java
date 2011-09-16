@@ -3,11 +3,8 @@ package com.habuma.spitter.remoting.jaxws.SEI;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.jws.WebParam;
+import javax.jws.WebMethod;
 import javax.jws.WebService;
-
-import com.habuma.spitter.domain.Spitter;
-import com.habuma.spitter.domain.Spittle;
 
 
                       
@@ -18,34 +15,75 @@ import com.habuma.spitter.domain.Spittle;
         portName="SpitterServiceEndpointPort" //wsdl:port name="..." 
   )     
    
-public class SpitterServiceEndpointImpl implements SpitterServiceEndpointInterf {
+public class SpitterServiceEndpointImpl implements SpitterService {
 
     private static final Logger LOG = Logger.getLogger(SpitterServiceEndpointImpl.class.getName());
 
+   
+	public List<Spittle> getRecentSpittles(int count) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	public void addSpittle( @WebParam(name="spittle") Spittle spittle) {
+    
+	public void saveSpittle(Spittle spittle) {
 		// TODO Auto-generated method stub
 		
 	}
 
-
-	public void deleteSpittle(@WebParam(name="spittleId") long spittleId) {
+    
+	public void saveSpitter(Spitter spitter) {
 		// TODO Auto-generated method stub
 		
 	}
 
+    
+	public void startFollowing(Spitter follower, Spitter followee) {
+		// TODO Auto-generated method stub
+		
+	}
 
-	public List<Spittle> getRecentSpittles(@WebParam(name="spittleCount") int spittleCount) {
+    
+	public List<Spittle> getSpittlesForSpitterBySpitter(Spitter spitter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+    
+	public List<Spittle> getSpittlesForSpitter(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	public List<Spittle> getSpittlesForSpitter(@WebParam(name="spitter") Spitter spitter) {
+	public Spitter getSpitter(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+
+	public Spittle getSpittleById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public void deleteSpittle(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public List<Spitter> getAllSpitters() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public Spitter getSpitterById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }
