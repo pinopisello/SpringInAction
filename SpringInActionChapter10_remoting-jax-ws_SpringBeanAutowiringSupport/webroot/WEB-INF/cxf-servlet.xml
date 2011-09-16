@@ -19,6 +19,5 @@
         wsdlLocation="WEB-INF/wsdl/SpitterService.wsdl"
         address="/spitterService">
     </jaxws:endpoint>
-gg  
-dd
+
 </beans>
