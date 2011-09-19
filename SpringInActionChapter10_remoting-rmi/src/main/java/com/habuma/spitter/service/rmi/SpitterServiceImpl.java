@@ -65,6 +65,16 @@ public class SpitterServiceImpl implements SpitterService {
 		return null;
 	}
 
+	public Spitter getSpitterById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Spittle> getSpittlesForSpitterBySpitter(Spitter spitter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 	

@@ -27,7 +27,7 @@ public class SpitterRmiClient {
 
 	@Test
 	public void getSpitter()throws InterruptedException{
-		Spitter spitter = spitterService.getSpitter(3);
+		Spitter spitter = spitterService.getSpitterById(3);
 		log.info("SpitterRmiClient spitter" + spitter.getFullName());
 	}
  

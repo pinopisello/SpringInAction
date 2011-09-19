@@ -12,6 +12,7 @@ import com.habuma.spitter.remoting.jaxws.SEI.Spitter;
 import com.habuma.spitter.remoting.jaxws.SEI.SpitterService;
 
 
+
 /**
  * Questo client usa JaxWsPortProxyFactoryBean che genera un proxy per il
  * servizio definito nel wsdl [vedi in remote-jax-ws-service-context.xml]

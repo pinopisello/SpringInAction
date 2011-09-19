@@ -21,7 +21,7 @@ import com.habuma.spitter.remoting.jaxws.server.SpitterServiceEndpointInterf;
  * 2011-09-14T13:48:05.904-07:00
  * Generated source version: 2.4.1
  * 
- */
+ */  
 public final class SpitterServiceEndpointInterf_SpitterServiceEndpointPort_Client {
 
     private static final QName SERVICE_NAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "SpitterService");

@@ -3,7 +3,6 @@ package com.habuma.spitter.remoting.jaxws.SEI;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 
