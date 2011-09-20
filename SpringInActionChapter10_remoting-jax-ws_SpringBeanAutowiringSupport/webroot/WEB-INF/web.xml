@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee">
-  <display-name>CXFLibrary</display-name>
-  <description>CXF Library Service</description>
+  <display-name>SpringBeanAutowiringSupport</display-name>
+  <description>SpringBeanAutowiringSupport</description>
+  
+  <!-- Configurazione Spring/CXF:vedi http://cxf.apache.org/docs/writing-a-service-with-spring.html -->
   
   <!-- Bootstrap di Spring -->
-  <listener>
-      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  <context-param>
+
   <!-- Parametri letti da ContextLoader -->
-     <param-name>contextConfigLocation</param-name>
-    <param-value> 
-      classpath:META-INF/cxf/cxf.xml
-      classpath:META-INF/cxf/cxf-extension-soap.xml
-      classpath:META-INF/cxf/cxf-servlet.xml 
-     </param-value>
-  </context-param>
+    <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>WEB-INF/beans.xml</param-value>
+	</context-param>
+	
+	<listener>
+      <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener> 
+    
   <servlet>
     <servlet-name>CXFServlet</servlet-name>
     <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>CXFServlet</servlet-name>
     <url-pattern>/ws/*</url-pattern>

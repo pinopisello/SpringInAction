@@ -22,11 +22,11 @@ import com.habuma.spitter.remoting.jaxws.server.SpitterServiceEndpointInterf;
  * Generated source version: 2.4.1
  * 
  */  
-public final class SpitterServiceEndpointInterf_SpitterServiceEndpointPort_Client {
+public final class Client_generato_WSDL2Java {
 
     private static final QName SERVICE_NAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "SpitterService");
 
-    private SpitterServiceEndpointInterf_SpitterServiceEndpointPort_Client() {
+    private Client_generato_WSDL2Java() {
     }
 
     public static void main(String args[]) throws java.lang.Exception {

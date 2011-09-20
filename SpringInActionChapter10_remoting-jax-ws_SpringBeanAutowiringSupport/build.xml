@@ -88,17 +88,18 @@
 	  	
 
 	  	<!-- Non voglio perdere il file implementazione ogni violta che rigenero gli skeletons -->
-	  <!--	<copy file="${basedir}/src/main/java/org/kp/BTLspitterService/SEI/BenefitBundlePackageInterfImpl.java"
-	  		tofile="${basedir}/src/main/java/org/kp/BTLspitterService/server/BenefitBundlePackageInterfImpl.java"
+	  	<copy file="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/SEI/SpitterServiceEndpointImpl.java"
+	  		tofile="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server/SpitterServiceEndpointInterfImpl.java"
 	  	    overwrite="true">
 	  		 <filterchain>
-	  				<replacestring from="package org.kp.BTLspitterService.SEI"
-	  					to="package org.kp.BTLspitterService.server" />
-	  		 	     <replacestring from="org.kp.BTLspitterService.SEI.BenefitBundle"
-	  		 		  					to="org.kp.BTLspitterService.server.BenefitBundle" />
+	  				<replacestring from="package com.habuma.spitter.remoting.jaxws.SEI"
+	  					to="package com.habuma.spitter.remoting.jaxws.server" />
+	  		 	<replacestring from="SpitterServiceEndpointImpl"
+	  		 		  					to="SpitterServiceEndpointInterfImpl" />
+	  		 	
 	  	</filterchain>
 	  	</copy>
-	  	-->
+	 
 	  	
 	  </target>
 

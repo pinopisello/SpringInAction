@@ -15,6 +15,7 @@ private Long id;
   private String email;  
   private boolean updateByEmail;
 
+
   public Long getId() {
     return id;
   }

@@ -20,7 +20,7 @@ import com.habuma.spitter.remoting.jaxws.SEI.SpitterService;
  *
  */
 
-public class SpitterJAX_WSClient {
+public class Client_Spring_JaxWsPortProxyFactoryBean {
 	 private static  Logger log = Logger.getAnonymousLogger();
 	 private static  ApplicationContext ctx;
 	 private static SpitterService spitterService;
@@ -29,7 +29,7 @@ public class SpitterJAX_WSClient {
   
   @BeforeClass
 	public static void setup(){
-		  ctx =   new ClassPathXmlApplicationContext("classpath*:remote-jax-ws-service-context.xml"); 
+		  ctx =   new ClassPathXmlApplicationContext("classpath*:Client_Spring_JaxWsPortProxyFactoryBean.xml"); 
 		  spitterService = (SpitterService)ctx.getBean("spitterService");
 		  log.info("SpitterRmiClient setup");
 	} 

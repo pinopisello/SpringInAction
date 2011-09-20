@@ -11,8 +11,7 @@
 	p:serviceInterface==> Interfaccia SEI che descrive le operazaioni del servizio
 	
 	-->
-	
-	
+
 	<bean id="spitterService"
 		class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean"
 		p:wsdlDocumentUrl="http://127.0.0.1:8080/SpitterService/ws/spitterService?wsdl"

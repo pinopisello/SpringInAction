@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<project name="Rev_Eng_Xcelys_DB" basedir=".">
+
+	<!-- Global properties for this build -->
+	<property name="ant.dir" value="${basedir}/ant/Xcelys" />
+	<property name="java.dir" value="${basedir}/src/main/java" />
+	<property name="cfg.dir" value="${basedir}/ant/Xcelys/cfg" />
+	<property name="hbm.dir" value="${basedir}/ant/Xcelys/hbm" />
+	<property name="dot.exe" location="/usr/bin/dot" />
+
+
+
+	<target name="echo">
+		<echo message="ant.dir = ${ant.dir}" />
+		<echo message="java.dir = ${java.dir}" />
+		<echo message="cfg.dir = ${cfg.dir}" />
+		<echo message="hbm.dir = ${hbm.dir}" />
+		<echo message="maven.runtime.classpath  ${runtime_classpath}" />
+	</target>
+
+	<path id="maven_compile_path">
+		<pathelement path="${runtime_classpath}" />
+		<!--<pathelement path="${basedir}/lib/jconn2.jar" />-->
+	</path>
+
+
+	<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="maven_compile_path" />
+
+	<!--<taskdef name="hbm2gif" classname="com.oy.shared.lm.ant.HBMtoGIFTask" classpath="${basedir}/Linguine_1_4/lib/oy-lm-1.4.jar" />-->
+
+	<target name="gen_linguine">
+		<hbm2gif caption="HIBERNATE - Xcelys" rotated="true" colors="#FF5937, black, black" dotFile="${hbm.dir}/Xcelys.dot" outFile="${hbm.dir}/Xcelys.png" exeFile="${dot.exe}">
+			<fileset dir="${hbm.dir}">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</hbm2gif>
+	</target>
+
+	<target name="hibernate_generation" description="Produces XML mapping files in Java directory" depends="echo,delete-xcelys-entities,clean_cfg_dir">
+		<hibernatetool destdir="${java.dir}">
+			<classpath refid="maven_compile_path" />
+			<jdbcconfiguration configurationfile="${ant.dir}/Hibernate_Xcelys.cfg.xml" reversestrategy="Base.RevEngineeringStrategy" revengfile="${ant.dir}/Hibernate_Xcelys.reveng.xml" /> 
+			<!-- Che me frega degli hbms dato che posso ottenere java annoted direttamente??	  
+			<hbm2hbmxml destdir="${hbm.dir}" />
+			-->
+			<hbm2cfgxml destdir="${cfg.dir}" ejb3="true" />
+			<hbm2java jdk5="true" ejb3="true" />
+		</hibernatetool>
+	
+		<!-- Creazione  hibernate.cfg per CA DEV3 -->
+			<copy file="${cfg.dir}/hibernate.cfg.xml" tofile="${cfg.dir}/Hibernate_Xcelys_CA_Dev_3.cfg.xml">
+			   <filterchain>
+					<replacestring from="jdbc:oracle:thin:@szxddb19vip.ssdc.kp.org:1521/xlolcadc_oltp" to="jdbc:oracle:thin:@szxddb19vip.ssdc.kp.org:1521/XLOLCADA_OLTP" />
+			   </filterchain>
+			</copy> 	
+			
+			<!-- Creazione  hibernate.cfg per CA DEV1 [E' il file usato per la generazione!!]-->
+			<copy file="${cfg.dir}/hibernate.cfg.xml" tofile="${cfg.dir}/Hibernate_Xcelys_CA_Dev_1.cfg.xml"/>
+
+		
+		<!-- Creazione  hibernate.cfg per CA Config2 -->
+		<copy file="${cfg.dir}/hibernate.cfg.xml" tofile="${cfg.dir}/Hibernate_Xcelys_CA_Dev_1.cfg.xml">
+		   <filterchain>
+				<replacestring from="jdbc:oracle:thin:@szxddb19vip.ssdc.kp.org:1521/xlolcadc_oltp" to="jdbc:oracle:thin:@szxddb19vip.ssdc.kp.org:1521/XLOLCACB_OLTP" />
+		   </filterchain>
+		</copy> 
+
+		<copy file="${cfg.dir}/hibernate.cfg.xml" tofile="${cfg.dir}/Hibernate_Xcelys_PSUP.cfg.xml" />
+		<delete file="${cfg.dir}/hibernate.cfg.xml" />
+		
+	</target>
+
+	<target name="delete-xcelys-entities">
+		<delete includeemptydirs="true" dir="${java.dir}/Xcelys" />
+	</target>
+
+	<target name="clean_cfg_dir">
+		<delete dir="${cfg.dir}" includes="*.xml" />
+	</target>
+
+</project>
