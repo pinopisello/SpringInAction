@@ -1,9 +1,13 @@
 package com.habuma.spitter.remoting.jaxws.SEI;
 
+import java.util.logging.Logger;
+
 import javax.jws.WebService;
 
 import com.habuma.spitter.remoting.jaxws.server.Spitter;
 
+
+                      
 
 @WebService(
 		name = "SpitterService",//wsdl:portType name="..." da' anche  il nome al file wsdl in java2wsdl
@@ -11,9 +15,14 @@ import com.habuma.spitter.remoting.jaxws.server.Spitter;
         targetNamespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService",
         portName="SpitterServiceEndpointPort" //wsdl:port name="..." 
   ) 
-public interface SpitterService {
+public class SpitterServiceImpl implements SpitterService {
+    private static final Logger LOG = Logger.getLogger(SpitterServiceImpl.class.getName());
 
-  Spitter getSpitterById(long id);
-  
- 
+
+	public Spitter getSpitterById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

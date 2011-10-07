@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="SpitterService" targetNamespace="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="SpitterServiceNomeServizio" targetNamespace="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService">
-  <xs:complexType name="spittle">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="id" type="xs:long"/>
-      <xs:element minOccurs="0" name="spitter" type="tns:spitter"/>
-      <xs:element minOccurs="0" name="text" type="xs:string"/>
-      <xs:element minOccurs="0" name="when" type="xs:dateTime"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="spitter">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" targetNamespace="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" version="1.0">
+<xs:element name="deleteSpittle" type="tns:deleteSpittle"/>
+<xs:element name="deleteSpittleResponse" type="tns:deleteSpittleResponse"/>
+<xs:element name="getAllSpitters" type="tns:getAllSpitters"/>
+<xs:element name="getAllSpittersResponse" type="tns:getAllSpittersResponse"/>
+<xs:element name="getRecentSpittles" type="tns:getRecentSpittles"/>
+<xs:element name="getRecentSpittlesResponse" type="tns:getRecentSpittlesResponse"/>
+<xs:element name="getSpitter" type="tns:getSpitter"/>
+<xs:element name="getSpitterById" type="tns:getSpitterById"/>
+<xs:element name="getSpitterByIdResponse" type="tns:getSpitterByIdResponse"/>
+<xs:element name="getSpitterResponse" type="tns:getSpitterResponse"/>
+<xs:element name="getSpittleById" type="tns:getSpittleById"/>
+<xs:element name="getSpittleByIdResponse" type="tns:getSpittleByIdResponse"/>
+<xs:element name="getSpittlesForSpitter" type="tns:getSpittlesForSpitter"/>
+<xs:element name="getSpittlesForSpitterBySpitter" type="tns:getSpittlesForSpitterBySpitter"/>
+<xs:element name="getSpittlesForSpitterBySpitterResponse" type="tns:getSpittlesForSpitterBySpitterResponse"/>
+<xs:element name="getSpittlesForSpitterResponse" type="tns:getSpittlesForSpitterResponse"/>
+<xs:element name="saveSpitter" type="tns:saveSpitter"/>
+<xs:element name="saveSpitterResponse" type="tns:saveSpitterResponse"/>
+<xs:element name="saveSpittle" type="tns:saveSpittle"/>
+<xs:element name="saveSpittleResponse" type="tns:saveSpittleResponse"/>
+<xs:element name="startFollowing" type="tns:startFollowing"/>
+<xs:element name="startFollowingResponse" type="tns:startFollowingResponse"/>
+<xs:complexType name="spitter">
     <xs:sequence>
       <xs:element minOccurs="0" name="email" type="xs:string"/>
       <xs:element minOccurs="0" name="fullName" type="xs:string"/>
@@ -21,207 +35,117 @@
       <xs:element minOccurs="0" name="username" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="getSpittleById" type="tns:getSpittleById"/>
-  <xs:complexType name="getSpittleById">
+<xs:complexType name="spittle">
     <xs:sequence>
-      <xs:element name="arg0" type="xs:long"/>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="spitter" type="tns:spitter"/>
+      <xs:element minOccurs="0" name="text" type="xs:string"/>
+      <xs:element minOccurs="0" name="when" type="xs:dateTime"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="getSpittleByIdResponse" type="tns:getSpittleByIdResponse"/>
-  <xs:complexType name="getSpittleByIdResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:spittle"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="getSpittlesForSpitter" type="tns:getSpittlesForSpitter"/>
-  <xs:complexType name="getSpittlesForSpitter">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="getSpittlesForSpitterResponse" type="tns:getSpittlesForSpitterResponse"/>
-  <xs:complexType name="getSpittlesForSpitterResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:spittle"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="saveSpitter" type="tns:saveSpitter"/>
-  <xs:complexType name="saveSpitter">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:spitter"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="saveSpitterResponse" type="tns:saveSpitterResponse"/>
-  <xs:complexType name="saveSpitterResponse">
+<xs:complexType name="startFollowingResponse">
     <xs:sequence/>
   </xs:complexType>
-  <xs:element name="getSpittlesForSpitterBySpitter" type="tns:getSpittlesForSpitterBySpitter"/>
-  <xs:complexType name="getSpittlesForSpitterBySpitter">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:spitter"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="getSpittlesForSpitterBySpitterResponse" type="tns:getSpittlesForSpitterBySpitterResponse"/>
-  <xs:complexType name="getSpittlesForSpitterBySpitterResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:spittle"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="saveSpittle" type="tns:saveSpittle"/>
-  <xs:complexType name="saveSpittle">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:spittle"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="saveSpittleResponse" type="tns:saveSpittleResponse"/>
-  <xs:complexType name="saveSpittleResponse">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:element name="getRecentSpittles" type="tns:getRecentSpittles"/>
-  <xs:complexType name="getRecentSpittles">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:int"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="getRecentSpittlesResponse" type="tns:getRecentSpittlesResponse"/>
-  <xs:complexType name="getRecentSpittlesResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:spittle"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="getAllSpitters" type="tns:getAllSpitters"/>
-  <xs:complexType name="getAllSpitters">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:element name="getAllSpittersResponse" type="tns:getAllSpittersResponse"/>
-  <xs:complexType name="getAllSpittersResponse">
+<xs:complexType name="getAllSpittersResponse">
     <xs:sequence>
       <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:spitter"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="getSpitter" type="tns:getSpitter"/>
-  <xs:complexType name="getSpitter">
+<xs:complexType name="saveSpittle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:spittle"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpittlesForSpitter">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="getSpitterResponse" type="tns:getSpitterResponse"/>
-  <xs:complexType name="getSpitterResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:spitter"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="deleteSpittle" type="tns:deleteSpittle"/>
-  <xs:complexType name="deleteSpittle">
+<xs:complexType name="getSpitterById">
     <xs:sequence>
       <xs:element name="arg0" type="xs:long"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="deleteSpittleResponse" type="tns:deleteSpittleResponse"/>
-  <xs:complexType name="deleteSpittleResponse">
+<xs:complexType name="getSpitterByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:spitter"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpittleById">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllSpitters">
     <xs:sequence/>
   </xs:complexType>
-  <xs:element name="getSpitterById" type="tns:getSpitterById"/>
-  <xs:complexType name="getSpitterById">
+<xs:complexType name="saveSpitter">
     <xs:sequence>
-      <xs:element name="arg0" type="xs:long"/>
+      <xs:element minOccurs="0" name="arg0" type="tns:spitter"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="getSpitterByIdResponse" type="tns:getSpitterByIdResponse"/>
-  <xs:complexType name="getSpitterByIdResponse">
+<xs:complexType name="getRecentSpittlesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:spittle"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpitterResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="return" type="tns:spitter"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="startFollowing" type="tns:startFollowing"/>
-  <xs:complexType name="startFollowing">
+<xs:complexType name="getSpittlesForSpitterBySpitter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:spitter"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getRecentSpittles">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpittlesForSpitterResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:spittle"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpittlesForSpitterBySpitterResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:spittle"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteSpittleResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="deleteSpittle">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="startFollowing">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="tns:spitter"/>
       <xs:element minOccurs="0" name="arg1" type="tns:spitter"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="startFollowingResponse" type="tns:startFollowingResponse"/>
-  <xs:complexType name="startFollowingResponse">
+<xs:complexType name="saveSpitterResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getSpitter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpittleByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:spittle"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="saveSpittleResponse">
     <xs:sequence/>
   </xs:complexType>
 </xs:schema>
   </wsdl:types>
-  <wsdl:message name="deleteSpittle">
-    <wsdl:part name="parameters" element="tns:deleteSpittle">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="deleteSpittleResponse">
-    <wsdl:part name="parameters" element="tns:deleteSpittleResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getSpittlesForSpitterResponse">
-    <wsdl:part name="parameters" element="tns:getSpittlesForSpitterResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getSpittlesForSpitterBySpitterResponse">
-    <wsdl:part name="parameters" element="tns:getSpittlesForSpitterBySpitterResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getSpittlesForSpitterBySpitter">
-    <wsdl:part name="parameters" element="tns:getSpittlesForSpitterBySpitter">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getRecentSpittles">
-    <wsdl:part name="parameters" element="tns:getRecentSpittles">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="saveSpittleResponse">
-    <wsdl:part name="parameters" element="tns:saveSpittleResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="startFollowing">
-    <wsdl:part name="parameters" element="tns:startFollowing">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getSpitter">
-    <wsdl:part name="parameters" element="tns:getSpitter">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getSpittleByIdResponse">
-    <wsdl:part name="parameters" element="tns:getSpittleByIdResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="saveSpitterResponse">
-    <wsdl:part name="parameters" element="tns:saveSpitterResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getSpittlesForSpitter">
-    <wsdl:part name="parameters" element="tns:getSpittlesForSpitter">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="saveSpittle">
-    <wsdl:part name="parameters" element="tns:saveSpittle">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="startFollowingResponse">
-    <wsdl:part name="parameters" element="tns:startFollowingResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getAllSpittersResponse">
-    <wsdl:part name="parameters" element="tns:getAllSpittersResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getRecentSpittlesResponse">
-    <wsdl:part name="parameters" element="tns:getRecentSpittlesResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getSpitterResponse">
-    <wsdl:part name="parameters" element="tns:getSpitterResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="saveSpitter">
-    <wsdl:part name="parameters" element="tns:saveSpitter">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getAllSpitters">
-    <wsdl:part name="parameters" element="tns:getAllSpitters">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="getSpitterByIdResponse">
     <wsdl:part name="parameters" element="tns:getSpitterByIdResponse">
     </wsdl:part>
@@ -230,161 +154,16 @@
     <wsdl:part name="parameters" element="tns:getSpitterById">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="getSpittleById">
-    <wsdl:part name="parameters" element="tns:getSpittleById">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:portType name="SpitterServiceEndpointInterf">
-    <wsdl:operation name="getSpittleById">
-      <wsdl:input name="getSpittleById" message="tns:getSpittleById">
-    </wsdl:input>
-      <wsdl:output name="getSpittleByIdResponse" message="tns:getSpittleByIdResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getSpittlesForSpitter">
-      <wsdl:input name="getSpittlesForSpitter" message="tns:getSpittlesForSpitter">
-    </wsdl:input>
-      <wsdl:output name="getSpittlesForSpitterResponse" message="tns:getSpittlesForSpitterResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="saveSpitter">
-      <wsdl:input name="saveSpitter" message="tns:saveSpitter">
-    </wsdl:input>
-      <wsdl:output name="saveSpitterResponse" message="tns:saveSpitterResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getSpittlesForSpitterBySpitter">
-      <wsdl:input name="getSpittlesForSpitterBySpitter" message="tns:getSpittlesForSpitterBySpitter">
-    </wsdl:input>
-      <wsdl:output name="getSpittlesForSpitterBySpitterResponse" message="tns:getSpittlesForSpitterBySpitterResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="saveSpittle">
-      <wsdl:input name="saveSpittle" message="tns:saveSpittle">
-    </wsdl:input>
-      <wsdl:output name="saveSpittleResponse" message="tns:saveSpittleResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getRecentSpittles">
-      <wsdl:input name="getRecentSpittles" message="tns:getRecentSpittles">
-    </wsdl:input>
-      <wsdl:output name="getRecentSpittlesResponse" message="tns:getRecentSpittlesResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getAllSpitters">
-      <wsdl:input name="getAllSpitters" message="tns:getAllSpitters">
-    </wsdl:input>
-      <wsdl:output name="getAllSpittersResponse" message="tns:getAllSpittersResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getSpitter">
-      <wsdl:input name="getSpitter" message="tns:getSpitter">
-    </wsdl:input>
-      <wsdl:output name="getSpitterResponse" message="tns:getSpitterResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="deleteSpittle">
-      <wsdl:input name="deleteSpittle" message="tns:deleteSpittle">
-    </wsdl:input>
-      <wsdl:output name="deleteSpittleResponse" message="tns:deleteSpittleResponse">
-    </wsdl:output>
-    </wsdl:operation>
+  <wsdl:portType name="SpitterService">
     <wsdl:operation name="getSpitterById">
       <wsdl:input name="getSpitterById" message="tns:getSpitterById">
     </wsdl:input>
       <wsdl:output name="getSpitterByIdResponse" message="tns:getSpitterByIdResponse">
     </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="startFollowing">
-      <wsdl:input name="startFollowing" message="tns:startFollowing">
-    </wsdl:input>
-      <wsdl:output name="startFollowingResponse" message="tns:startFollowingResponse">
-    </wsdl:output>
-    </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="SpitterServiceSoapBinding" type="tns:SpitterServiceEndpointInterf">
+  <wsdl:binding name="SpitterServiceNomeServizioSoapBinding" type="tns:SpitterService">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="getSpittleById">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getSpittleById">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getSpittleByIdResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getSpittlesForSpitter">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getSpittlesForSpitter">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getSpittlesForSpitterResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="saveSpitter">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="saveSpitter">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="saveSpitterResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getSpittlesForSpitterBySpitter">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getSpittlesForSpitterBySpitter">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getSpittlesForSpitterBySpitterResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="saveSpittle">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="saveSpittle">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="saveSpittleResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getRecentSpittles">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getRecentSpittles">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getRecentSpittlesResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getAllSpitters">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getAllSpitters">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getAllSpittersResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="deleteSpittle">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="deleteSpittle">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="deleteSpittleResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getSpitter">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="getSpitter">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getSpitterResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="getSpitterById">
       <soap:operation soapAction="" style="document"/>
       <wsdl:input name="getSpitterById">
@@ -394,18 +173,9 @@
         <soap:body use="literal"/>
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="startFollowing">
-      <soap:operation soapAction="" style="document"/>
-      <wsdl:input name="startFollowing">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="startFollowingResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="SpitterService">
-    <wsdl:port name="SpitterServiceEndpointPort" binding="tns:SpitterServiceSoapBinding">
+  <wsdl:service name="SpitterServiceNomeServizio">
+    <wsdl:port name="SpitterServiceEndpointPort" binding="tns:SpitterServiceNomeServizioSoapBinding">
       <soap:address location="http://127.0.0.1:8080/SpitterService/ws/spitterService"/>
     </wsdl:port>
   </wsdl:service>

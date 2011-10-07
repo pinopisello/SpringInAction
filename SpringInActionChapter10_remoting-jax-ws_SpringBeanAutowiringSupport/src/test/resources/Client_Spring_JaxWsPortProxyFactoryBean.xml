@@ -5,8 +5,8 @@
 	
 	<!-- JaxWsPortProxyFactoryBean produces proxies that talk to remote web services. 
 	p:wsdlDocumentUrl ==> Locazione wsdl [file or http]
-	p:serviceName     ==> Nome del servizio a cui si vuole accedere come scritto nel wsdl stesso
-	p:portName        ==> Nome del port a cui si vuole accedere come scritto nel wsdl stesso
+	p:serviceName     ==> <wsdl:service name="xyz"> Nome del servizio a cui si vuole accedere come scritto nel wsdl stesso
+	p:portName        ==> <wsdl:port name="xyz">    Nome del port a cui si vuole accedere come scritto nel wsdl stesso
 	p:namespaceUri    ==> Nome del namespace a cui si vuole accedere come scritto nel wsdl stesso
 	p:serviceInterface==> Interfaccia SEI che descrive le operazaioni del servizio
 	
@@ -15,10 +15,10 @@
 	<bean id="spitterService"
 		class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean"
 		p:wsdlDocumentUrl="http://127.0.0.1:8080/SpitterService/ws/spitterService?wsdl"
-		p:serviceName="SpitterService"
-		p:portName="SpitterServiceEndpointPort"
-		p:serviceInterface="com.habuma.spitter.remoting.jaxws.SEI.SpitterService"
+		p:serviceName="SpitterServiceNomeServizio"  
+		p:portName="SpitterServiceEndpointPort"            
+		p:serviceInterface="com.habuma.spitter.remoting.jaxws.SEI.SpitterService"                 
 		p:namespaceUri="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" />
-		
+		            
 		
 </beans>

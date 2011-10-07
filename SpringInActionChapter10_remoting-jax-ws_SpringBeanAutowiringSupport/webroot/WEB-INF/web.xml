@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ <description>SpringBeanAutowiringSupport</description>
+ <display-name>SpringBeanAutowiringSupport</display-name>
 
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee">
-  <display-name>SpringBeanAutowiringSupport</display-name>
-  <description>SpringBeanAutowiringSupport</description>
-  
-  <!-- Configurazione Spring/CXF:vedi http://cxf.apache.org/docs/writing-a-service-with-spring.html -->
-  
-  <!-- Bootstrap di Spring -->
 
-  <!-- Parametri letti da ContextLoader -->
-    <context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>WEB-INF/beans.xml</param-value>
-	</context-param>
-	
+
+ <!--Bootstrap di Spring   Configurazione Spring/CXF:vedi http://cxf.apache.org/docs/writing-a-service-with-spring.html -->
 	<listener>
       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener> 
     
-  <servlet>
-    <servlet-name>CXFServlet</servlet-name>
-    <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>CXFServlet</servlet-name>
-    <url-pattern>/ws/*</url-pattern>
-  </servlet-mapping>
+<!--  Parametri letti da ContextLoaderListener -->
+ <context-param>
+  <param-name>contextConfigLocation</param-name>
+  <param-value>/WEB-INF/configurazione-spring.xml</param-value>
+ </context-param>
+
+ 
+ <!-- CFX servlet -->
+ <servlet>
+  <servlet-name>CXFServlet</servlet-name>
+  <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+  <init-param>
+   <!-- Indicano da quale file prendere la configurazione Spring -->
+   <param-name>config-location</param-name>
+   <param-value>/WEB-INF/configurazione-cxf-servlet.xml</param-value>
+  </init-param>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>CXFServlet</servlet-name>
+  <url-pattern>/ws/*</url-pattern>
+ </servlet-mapping>
 </web-app>

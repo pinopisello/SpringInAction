@@ -25,15 +25,15 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _DeleteSpittle_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "deleteSpittle");
+    private final static QName _DeleteSpittleResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "deleteSpittleResponse");
     private final static QName _GetSpittlesForSpitterBySpitterResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpittlesForSpitterBySpitterResponse");
     private final static QName _GetSpittlesForSpitterResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpittlesForSpitterResponse");
-    private final static QName _DeleteSpittleResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "deleteSpittleResponse");
     private final static QName _GetSpittlesForSpitterBySpitter_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpittlesForSpitterBySpitter");
     private final static QName _GetRecentSpittles_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getRecentSpittles");
     private final static QName _SaveSpittleResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "saveSpittleResponse");
-    private final static QName _SaveSpitterResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "saveSpitterResponse");
     private final static QName _GetSpittleByIdResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpittleByIdResponse");
     private final static QName _GetSpitter_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpitter");
+    private final static QName _SaveSpitterResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "saveSpitterResponse");
     private final static QName _StartFollowing_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "startFollowing");
     private final static QName _GetSpittlesForSpitter_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpittlesForSpitter");
     private final static QName _SaveSpittle_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "saveSpittle");
@@ -43,8 +43,8 @@ public class ObjectFactory {
     private final static QName _GetSpitterResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpitterResponse");
     private final static QName _SaveSpitter_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "saveSpitter");
     private final static QName _GetAllSpitters_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getAllSpitters");
-    private final static QName _GetSpitterByIdResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpitterByIdResponse");
     private final static QName _GetSpitterById_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpitterById");
+    private final static QName _GetSpitterByIdResponse_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpitterByIdResponse");
     private final static QName _GetSpittleById_QNAME = new QName("http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", "getSpittleById");
 
     /**
@@ -87,19 +87,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetSpitterByIdResponse }
-     * 
-     */
-    public GetSpitterByIdResponse createGetSpitterByIdResponse() {
-        return new GetSpitterByIdResponse();
-    }
-
-    /**
      * Create an instance of {@link GetSpitterById }
      * 
      */
     public GetSpitterById createGetSpitterById() {
         return new GetSpitterById();
+    }
+
+    /**
+     * Create an instance of {@link GetSpitterByIdResponse }
+     * 
+     */
+    public GetSpitterByIdResponse createGetSpitterByIdResponse() {
+        return new GetSpitterByIdResponse();
     }
 
     /**
@@ -159,14 +159,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DeleteSpittleResponse }
-     * 
-     */
-    public DeleteSpittleResponse createDeleteSpittleResponse() {
-        return new DeleteSpittleResponse();
-    }
-
-    /**
      * Create an instance of {@link GetSpittlesForSpitterResponse }
      * 
      */
@@ -180,6 +172,14 @@ public class ObjectFactory {
      */
     public GetSpittlesForSpitterBySpitterResponse createGetSpittlesForSpitterBySpitterResponse() {
         return new GetSpittlesForSpitterBySpitterResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeleteSpittleResponse }
+     * 
+     */
+    public DeleteSpittleResponse createDeleteSpittleResponse() {
+        return new DeleteSpittleResponse();
     }
 
     /**
@@ -199,6 +199,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SaveSpitterResponse }
+     * 
+     */
+    public SaveSpitterResponse createSaveSpitterResponse() {
+        return new SaveSpitterResponse();
+    }
+
+    /**
      * Create an instance of {@link GetSpitter }
      * 
      */
@@ -212,14 +220,6 @@ public class ObjectFactory {
      */
     public GetSpittleByIdResponse createGetSpittleByIdResponse() {
         return new GetSpittleByIdResponse();
-    }
-
-    /**
-     * Create an instance of {@link SaveSpitterResponse }
-     * 
-     */
-    public SaveSpitterResponse createSaveSpitterResponse() {
-        return new SaveSpitterResponse();
     }
 
     /**
@@ -256,6 +256,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteSpittleResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", name = "deleteSpittleResponse")
+    public JAXBElement<DeleteSpittleResponse> createDeleteSpittleResponse(DeleteSpittleResponse value) {
+        return new JAXBElement<DeleteSpittleResponse>(_DeleteSpittleResponse_QNAME, DeleteSpittleResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetSpittlesForSpitterBySpitterResponse }{@code >}}
      * 
      */
@@ -271,15 +280,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", name = "getSpittlesForSpitterResponse")
     public JAXBElement<GetSpittlesForSpitterResponse> createGetSpittlesForSpitterResponse(GetSpittlesForSpitterResponse value) {
         return new JAXBElement<GetSpittlesForSpitterResponse>(_GetSpittlesForSpitterResponse_QNAME, GetSpittlesForSpitterResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteSpittleResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", name = "deleteSpittleResponse")
-    public JAXBElement<DeleteSpittleResponse> createDeleteSpittleResponse(DeleteSpittleResponse value) {
-        return new JAXBElement<DeleteSpittleResponse>(_DeleteSpittleResponse_QNAME, DeleteSpittleResponse.class, null, value);
     }
 
     /**
@@ -310,15 +310,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SaveSpitterResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", name = "saveSpitterResponse")
-    public JAXBElement<SaveSpitterResponse> createSaveSpitterResponse(SaveSpitterResponse value) {
-        return new JAXBElement<SaveSpitterResponse>(_SaveSpitterResponse_QNAME, SaveSpitterResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetSpittleByIdResponse }{@code >}}
      * 
      */
@@ -334,6 +325,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", name = "getSpitter")
     public JAXBElement<GetSpitter> createGetSpitter(GetSpitter value) {
         return new JAXBElement<GetSpitter>(_GetSpitter_QNAME, GetSpitter.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveSpitterResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", name = "saveSpitterResponse")
+    public JAXBElement<SaveSpitterResponse> createSaveSpitterResponse(SaveSpitterResponse value) {
+        return new JAXBElement<SaveSpitterResponse>(_SaveSpitterResponse_QNAME, SaveSpitterResponse.class, null, value);
     }
 
     /**
@@ -418,21 +418,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetSpitterByIdResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", name = "getSpitterByIdResponse")
-    public JAXBElement<GetSpitterByIdResponse> createGetSpitterByIdResponse(GetSpitterByIdResponse value) {
-        return new JAXBElement<GetSpitterByIdResponse>(_GetSpitterByIdResponse_QNAME, GetSpitterByIdResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetSpitterById }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", name = "getSpitterById")
     public JAXBElement<GetSpitterById> createGetSpitterById(GetSpitterById value) {
         return new JAXBElement<GetSpitterById>(_GetSpitterById_QNAME, GetSpitterById.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetSpitterByIdResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService", name = "getSpitterByIdResponse")
+    public JAXBElement<GetSpitterByIdResponse> createGetSpitterByIdResponse(GetSpitterByIdResponse value) {
+        return new JAXBElement<GetSpitterByIdResponse>(_GetSpitterByIdResponse_QNAME, GetSpitterByIdResponse.class, null, value);
     }
 
     /**

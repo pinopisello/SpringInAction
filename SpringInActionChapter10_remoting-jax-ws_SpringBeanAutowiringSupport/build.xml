@@ -11,7 +11,7 @@
 
 	
   <property name="spitterService-java2wsdl-wsdl-path" value="${basedir}/webroot/WEB-INF/wsdl/SpitterService.wsdl"/>
-  <property name="spitterService-java2wsdl-service-class" value="com.habuma.spitter.remoting.jaxws.SEI.SpitterServiceEndpointImpl"/>
+  <property name="spitterService-java2wsdl-service-class" value="com.habuma.spitter.remoting.jaxws.SEI.SpitterServiceImpl"/>
   <property name="spitterService-java2wsdl-generated-path" location="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server"/>
   <property name="spitterService-wsdl2java-package-name" value="com.habuma.spitter.remoting.jaxws.server"/>
   <property name="spitterService-wsdl2java-bindinig-path" value="${basedir}/bindings.txt"/>
@@ -63,8 +63,13 @@
 <!-- Genera e compila JAX-WS/JAXB code dal SpitterService.wsdl -->
 	  <target name="spitterService-wsdl2java">
 	  	<echo message="Running WSDL2Java task"/>
-	    <delete quiet="true" dir="${spitterService-java2wsdl-generated-path}"/>
-	    <mkdir dir="${spitterService-java2wsdl-generated-path}"/>
+	    <delete quiet="true"  >
+	    	<fileset dir="${spitterService-java2wsdl-generated-path}" casesensitive="yes">
+	    	  <exclude name="Spittle.java"/>
+	    	  <exclude name="Spitter.java"/>
+	    	</fileset>
+	  	</delete>
+	   <!-- <mkdir dir="${spitterService-java2wsdl-generated-path}"/>-->
 	    <java classpathref="cxf-classpath" fork="false"  classname="org.apache.cxf.tools.wsdlto.WSDLToJava">
 	      <!-- -d parameter sets the output root directory -->
 	      <arg value="-d"/>
@@ -72,10 +77,13 @@
 	      <!-- -p parameter gives the package for CXF code generation -->
 	      <arg value="-p"/>
 	      <arg value="${spitterService-wsdl2java-package-name}"/>
-	      <!--<arg value="-client"/>-->
-	    	<!--<arg value="-server"/>-->
-	      <!--<arg value="-impl"/>-->
+	      <!--
+	      <arg value="-client"/>
+	      <arg value="-server"/>
+	      <arg value="-impl"/>
 	      <arg value="-all"/>
+	      -->
+	      <arg value="-server"/>
 	      <!-- -validate parameter requests WSDL validation before generation -->
 	      <arg value="-validate"/>
 		   <!-- Bindings file per evitare che wsdl2java generi JAXBElemet invece che String-->
@@ -87,7 +95,7 @@
 	    </java>
 	  	
 
-	  	<!-- Non voglio perdere il file implementazione ogni violta che rigenero gli skeletons -->
+	  	<!-- Non voglio perdere il file implementazione ogni violta che rigenero gli skeletons
 	  	<copy file="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/SEI/SpitterServiceEndpointImpl.java"
 	  		tofile="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server/SpitterServiceEndpointInterfImpl.java"
 	  	    overwrite="true">
@@ -99,7 +107,7 @@
 	  		 	
 	  	</filterchain>
 	  	</copy>
-	 
+	  -->
 	  	
 	  </target>
 

@@ -8,15 +8,18 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.habuma.spitter.remoting.jaxws.SEI.Spitter;
 import com.habuma.spitter.remoting.jaxws.SEI.SpitterService;
+import com.habuma.spitter.remoting.jaxws.server.Spitter;
 
 
 
 /**
- * Questo client usa JaxWsPortProxyFactoryBean che genera un proxy per il
- * servizio definito nel wsdl [vedi in remote-jax-ws-service-context.xml]
  * 
+ * Questo client utilizza il Proxy generator "JaxWsPortProxyFactoryBean"
+ * da Spring-Web per generare 'on the fly' un proxy SOAP a partire da 
+ * Vedi Client_Spring_JaxWsPortProxyFactoryBean.xml
+ * 
+ * @author W947523
  *
  */
 
@@ -31,18 +34,18 @@ public class Client_Spring_JaxWsPortProxyFactoryBean {
 	public static void setup(){
 		  ctx =   new ClassPathXmlApplicationContext("classpath*:Client_Spring_JaxWsPortProxyFactoryBean.xml"); 
 		  spitterService = (SpitterService)ctx.getBean("spitterService");
-		  log.info("SpitterRmiClient setup");
+		  log.info("Client_Spring_JaxWsPortProxyFactoryBean setup");
 	} 
 
 	@Test
 	public void getSpitter()throws InterruptedException{
 		Spitter spitter = spitterService.getSpitterById(3);
-		log.info("SpitterRmiClient spitter" + spitter.getFullName());
+		log.info("Client_Spring_JaxWsPortProxyFactoryBean spitter" + spitter.getFullName());
 	}
  
 	@AfterClass
 	public static void cleanup(){
-		log.info("SpitterRmiClient cleanup");
+		log.info("Client_Spring_JaxWsPortProxyFactoryBean cleanup");
 	} 
 	
 }

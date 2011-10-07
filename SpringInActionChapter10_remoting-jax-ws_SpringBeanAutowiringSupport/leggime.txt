@@ -1,0 +1,12 @@
+Step 1: Creare la SEI e la classe che implementa il servizio:
+
+com.habuma.spitter.remoting.jaxws.SEI.SpitterService 
+com.habuma.spitter.remoting.jaxws.SEI.SpitterServiceImpl
+
+
+Step2:Fai girare build.xml:spitterService-java2wsdl che genera a sua volta
+tuttle le classi JAXB necessarie a far funzicare il lato server del serzio Spring.
+
+com.habuma.spitter.remoting.jaxws.server
+
+
