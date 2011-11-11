@@ -1,9 +1,7 @@
 package com.habuma.spitter.remoting.jaxws.SEI;
 
-import java.util.List;
-
 import com.habuma.spitter.remoting.jaxws.server.Spitter;
-import com.habuma.spitter.remoting.jaxws.server.Spittle;
+
 
 
 

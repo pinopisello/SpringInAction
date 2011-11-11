@@ -70,7 +70,7 @@
 	    	</fileset>
 	  	</delete>
 	   <!-- <mkdir dir="${spitterService-java2wsdl-generated-path}"/>-->
-	    <java classpathref="cxf-classpath" fork="false"  classname="org.apache.cxf.tools.wsdlto.WSDLToJava">
+	   <java classpathref="cxf-classpath" fork="false"  classname="org.apache.cxf.tools.wsdlto.WSDLToJava">
 	      <!-- -d parameter sets the output root directory -->
 	      <arg value="-d"/>
 	      <arg value="${basedir}/src/main/java"/>
