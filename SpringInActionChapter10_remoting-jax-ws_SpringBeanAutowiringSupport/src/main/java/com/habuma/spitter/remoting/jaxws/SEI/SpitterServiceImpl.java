@@ -4,6 +4,9 @@ import java.util.logging.Logger;
 
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
 import com.habuma.spitter.remoting.jaxws.server.Spitter;
 
 
@@ -15,15 +18,16 @@ import com.habuma.spitter.remoting.jaxws.server.Spitter;
         targetNamespace = "http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService",
         portName="SpitterServiceEndpointPort" //wsdl:port name="..." 
   ) 
-public class SpitterServiceImpl implements SpitterService {
+public class SpitterServiceImpl  extends SpringBeanAutowiringSupport implements SpitterService{
     private static final Logger LOG = Logger.getLogger(SpitterServiceImpl.class.getName());
-
-
+    
+    @Autowired
+    private SpitterService autowiredBean;
+    
+    
 	public com.habuma.spitter.remoting.jaxws.server.Spitter getSpitterById(long id) {
 		System.out.println("getSpitterById ("+id+")");
-		Spitter out = new Spitter();
-		out.setFullName("nome pieno");
-		out.setPassword("parola d ordine");
+		Spitter out = autowiredBean.getSpitterById( id);
 		return out;
 	}
 

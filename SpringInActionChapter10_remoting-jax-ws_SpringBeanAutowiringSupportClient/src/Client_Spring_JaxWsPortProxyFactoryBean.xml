@@ -17,8 +17,8 @@
 		p:wsdlDocumentUrl="http://127.0.0.1:8080/SpitterService/ws/spitterService?wsdl"
 		p:serviceName="SpitterServiceNomeServizio"  
 		p:portName="SpitterServiceEndpointPort"            
-		p:serviceInterface="com.habuma.spitter.remoting.jaxws.SEI.SpitterService"                 
+		p:serviceInterface="SpitterService"                 
 		p:namespaceUri="http://SEI.jaxws.remoting.spitter.habuma.com/SpitterService" />
-		            
+		
 		
 </beans>

@@ -3,6 +3,7 @@
     <wb-module deploy-name="SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupportClient">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/webroot"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="SpringInActionChapter10_remoting-rm"/>
         <property name="java-output-path" value="/SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupportClient/target/classes"/>
     </wb-module>

@@ -15,7 +15,8 @@ public class AutowiredBean implements SpitterService{
 	public Spitter getSpitterById(long id) {
 		System.out.println("getSpitterById");
 		Spitter out = new Spitter(); 
-		out.setFullName("Creato da AutowiredBean.getSpitterById");
+		out.setFullName("nome pieno");
+		out.setPassword("parola d ordine");
 		return out;
 	}
 

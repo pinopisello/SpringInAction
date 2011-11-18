@@ -12,12 +12,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * 
  * Questo client utilizza il managed-bean CXF <jaxws:client> that can be used on the client side. 
  * You'll give it:
- * 	a bean name, 
- * 	the service interface,
- *  the service URL 
+ * 	a bean name               <jaxws:client id="spitterService"
+ * 	the service interface     serviceClass="SpitterService" 
+ *  the service URL           address="http://127.0.0.1:8080/SpitterService/ws/spitterService" 
  *  
  * and it will create a bean with the specified name, implementing the service interface,
- *  and invoking the remote SOAP service under the covers.
+ * and invoking the remote SOAP service under the covers.
  *  
  * Vedi Client_CXF_JAXWS.xml 
  * @author W947523
