@@ -95,19 +95,22 @@
 	    </java>
 	  	
 
-	  	<!-- Non voglio perdere il file implementazione ogni violta che rigenero gli skeletons
-	  	<copy file="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/SEI/SpitterServiceEndpointImpl.java"
-	  		tofile="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server/SpitterServiceEndpointInterfImpl.java"
-	  	    overwrite="true">
-	  		 <filterchain>
-	  				<replacestring from="package com.habuma.spitter.remoting.jaxws.SEI"
-	  					to="package com.habuma.spitter.remoting.jaxws.server" />
-	  		 	<replacestring from="SpitterServiceEndpointImpl"
-	  		 		  					to="SpitterServiceEndpointInterfImpl" />
-	  		 	
-	  	</filterchain>
-	  	</copy>
-	  -->
+	  	<!-- Voglio avere fresh proggetto dei clients [SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupportClient] 
+	  	     - la piu SEI [SpitterService]
+	  	     - Spitter.java
+	  	     - Spittle.java
+	  	-->
+	  	<copy file="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/SEI/SpitterService.java"
+	  		tofile="${basedir}/../SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupportClient/src/com/habuma/spitter/remoting/jaxws/SEI/SpitterService.java"
+	  	    overwrite="true"/>
+	  	
+	  	<copy file="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server/Spitter.java"
+	  		tofile="${basedir}/../SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupportClient/src/com/habuma/spitter/remoting/jaxws/server/Spitter.java"
+	  	    overwrite="true"/>
+	  	 
+	  	<copy file="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server/Spittle.java"
+	  		tofile="${basedir}/../SpringInActionChapter10_remoting-jax-ws_SpringBeanAutowiringSupportClient/src/com/habuma/spitter/remoting/jaxws/server/Spittle.java"
+	  	    overwrite="true"/>
 	  	
 	  </target>
 

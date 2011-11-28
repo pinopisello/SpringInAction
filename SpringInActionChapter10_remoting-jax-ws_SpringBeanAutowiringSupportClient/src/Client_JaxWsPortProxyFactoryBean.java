@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.habuma.spitter.remoting.jaxws.SEI.SpitterService;
+import com.habuma.spitter.remoting.jaxws.server.Spitter;
+
 /**
  * 
  * Questo client utilizza il JaxWsPortProxyFactoryBean Spring Bean that produces a proxy that knows
@@ -46,7 +49,7 @@ public class Client_JaxWsPortProxyFactoryBean {
 	@Test
 	public void getSpitter()throws InterruptedException{
 		Spitter spitter = spitterService.getSpitterById(3);
-		log.info("Client_CXF_JAXWS spitter" + spitter.getFullName());
+		log.info("Successo: Client_CXF_JAXWS spitter" + spitter.getFullName());
 	}
  
 	@AfterClass

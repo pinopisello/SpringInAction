@@ -7,7 +7,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
     <jaxws:client id="spitterService"
-                  serviceClass="SpitterService" 
+                  serviceClass="com.habuma.spitter.remoting.jaxws.SEI.SpitterService" 
                   address="http://127.0.0.1:8080/SpitterService/ws/spitterService" />
 </beans>
 

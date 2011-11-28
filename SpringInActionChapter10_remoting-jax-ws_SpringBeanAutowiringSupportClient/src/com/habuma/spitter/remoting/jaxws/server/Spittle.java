@@ -1,5 +1,5 @@
 
-
+package com.habuma.spitter.remoting.jaxws.server;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
