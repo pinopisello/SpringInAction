@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.habuma.spitter.remoting.jaxws.SEI.SpitterService;
 import com.habuma.spitter.remoting.jaxws.server.Spitter;
+import com.habuma.spitter.remoting.jaxws.server.Spittle;
 
 /**
  * 
@@ -47,9 +48,15 @@ public class Client_JaxWsPortProxyFactoryBean {
 	} 
 
 	@Test
-	public void getSpitter()throws InterruptedException{
+	public void getSpitter(){
 		Spitter spitter = spitterService.getSpitterById(3);
 		log.info("Successo: Client_CXF_JAXWS spitter" + spitter.getFullName());
+	}
+	
+	@Test
+	public void getSpittle(){
+		Spittle spittle = spitterService.getSpittleById(4);
+		log.info("Successo: Client_CXF_JAXWS spittle" + spittle.getId());
 	}
  
 	@AfterClass

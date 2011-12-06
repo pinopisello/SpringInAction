@@ -7,13 +7,13 @@
 		<version>2.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>SpringInActionChapter10_remoting-jaxws</artifactId>
-	<packaging>war</packaging>
-	<name>SpringInActionChapter10_remoting-rm</name>
-	<url>http://www.springinaction.com</url>
+	<artifactId>Generazione_WSDL_da_SEI_Annotata</artifactId>
+	<packaging>jar</packaging>
+	<name>Generazione_WSDL_da_SEI_Annotata</name>
+
 
 	<properties>
-		<cxf.version>2.4.1</cxf.version>
+		<cxf.version>2.5.0</cxf.version>
 		<spitterService-java2wsdl-wsdl-path>${basedir}/webroot/WEB-INF/wsdl/SpitterService.wsdl</spitterService-java2wsdl-wsdl-path>
         <spitterService-java2wsdl-service-class>com.habuma.spitter.remoting.jaxws.SEI.SpitterServiceImpl</spitterService-java2wsdl-service-class>
 		<spitterService-wsdl2java-generated-path>${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server</spitterService-wsdl2java-generated-path>
@@ -33,38 +33,7 @@
 
 	<build>
 		<finalName>SpringInActionChapter10_remoting-rm</finalName>
-		<plugins>
-		
-		
-		<!--  
-		    <plugin>
-				  <groupId>org.apache.cxf</groupId>
-				  <artifactId>cxf-codegen-plugin</artifactId>
-				  <version>2.0.9</version>
-				  <dependencies>
-				    <dependency>
-				      <groupId>org.apache.cxf</groupId>
-				      <artifactId>cxf-rt-frontend-jaxws</artifactId>
-				      <version>2.0.9</version>
-				    </dependency>
-				  </dependencies>
-				  <executions>
-				    <execution>
-				      <id>generate-wsdl</id>
-				      <phase>process-classes</phase>
-				      <configuration>
-				        <className>${spitterService-java2wsdl-service-class}</className>
-				        <outputFile>${spitterService-java2wsdl-wsdl-path}</outputFile>
-				      </configuration>
-				      <goals>
-				        <goal>java2wsdl</goal>
-				      </goals>
-				    </execution>
-				  </executions>
-			  </plugin>
-		      	
-		      	-->
-		      	
+		<plugins> 	
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -72,18 +41,6 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-			
-			<plugin>
-				 <groupId>org.apache.maven.plugins</groupId>
-  				 <artifactId>maven-war-plugin</artifactId>
- 			     <version>2.0.2</version>
-				<configuration>
-				    <!-- <webappDirectory>${basedir}/webroot</webappDirectory> -->
-					<warSourceDirectory>${basedir}/webroot</warSourceDirectory>
-			        <excludes>**/client/*.class</excludes>
-				</configuration>
-			</plugin>
-			
 		</plugins>
 	</build>
 

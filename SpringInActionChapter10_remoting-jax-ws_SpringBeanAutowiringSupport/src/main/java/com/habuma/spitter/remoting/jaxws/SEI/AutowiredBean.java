@@ -1,6 +1,10 @@
 package com.habuma.spitter.remoting.jaxws.SEI;
 
+import javax.jws.WebParam;
+import javax.jws.WebParam.Mode;
+
 import com.habuma.spitter.remoting.jaxws.server.Spitter;
+import com.habuma.spitter.remoting.jaxws.server.Spittle;
 
 
 
@@ -20,5 +24,11 @@ public class AutowiredBean implements SpitterService{
 		return out;
 	}
 
-
+	public Spittle getSpittleById(long id) {
+		return null;
+	}
+	
+	public Spitter getSpitterByFullName(String fullName) {
+		return null;
+	}
 }

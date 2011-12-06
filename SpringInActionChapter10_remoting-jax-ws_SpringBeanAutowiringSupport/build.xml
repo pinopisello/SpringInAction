@@ -11,8 +11,8 @@
 
 	
   <property name="spitterService-java2wsdl-wsdl-path" value="${basedir}/webroot/WEB-INF/wsdl/SpitterService.wsdl"/>
-  <property name="spitterService-java2wsdl-service-class" value="com.habuma.spitter.remoting.jaxws.SEI.SpitterServiceImpl"/>
-  <property name="spitterService-java2wsdl-generated-path" location="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server"/>
+  <property name="spitterService-java2wsdl-service-class" value="com.habuma.spitter.remoting.jaxws.SEI.SpitterService"/>
+  <property name="spitterService-wsdl2java-generated-path" location="${basedir}/src/main/java/com/habuma/spitter/remoting/jaxws/server"/>
   <property name="spitterService-wsdl2java-package-name" value="com.habuma.spitter.remoting.jaxws.server"/>
   <property name="spitterService-wsdl2java-bindinig-path" value="${basedir}/bindings.txt"/>
 		 	 		
@@ -44,7 +44,7 @@
   <echo message="build-dir=${build-dir}"/>
   <echo message="cxf-classpath=${cxf-classpath}"  />
 
-    	
+  	
 <!-- Genera  SpitterService.wsdl a partire dalla classe che implementa il servizio  -->
  <target name="spitterService-java2wsdl">
  	<java  classpathref="cxf-classpath" classname="org.apache.cxf.tools.java2ws.JavaToWS" fork="false">
@@ -53,8 +53,8 @@
  		<arg value="-address"/>
  		<arg value="http://127.0.0.1:8080/SpitterService/ws/spitterService"/>	
  		 <!--<arg value="-createxsdimports"/>-->
-     	 <arg value="-o"/>
-         <arg value="${spitterService-java2wsdl-wsdl-path}"/>    	
+ 		<arg value="-o"/>
+         <arg value="${spitterService-java2wsdl-wsdl-path}"/>    
          <arg value="${spitterService-java2wsdl-service-class}"/>
       </java>
    </target>
@@ -64,12 +64,14 @@
 	  <target name="spitterService-wsdl2java">
 	  	<echo message="Running WSDL2Java task"/>
 	    <delete quiet="true"  >
-	    	<fileset dir="${spitterService-java2wsdl-generated-path}" casesensitive="yes">
+	    	<fileset dir="${spitterService-wsdl2java-generated-path}" casesensitive="yes">
+	    		<!--	 
 	    	  <exclude name="Spittle.java"/>
 	    	  <exclude name="Spitter.java"/>
+	    	  -->
 	    	</fileset>
 	  	</delete>
-	   <!-- <mkdir dir="${spitterService-java2wsdl-generated-path}"/>-->
+
 	   <java classpathref="cxf-classpath" fork="false"  classname="org.apache.cxf.tools.wsdlto.WSDLToJava">
 	      <!-- -d parameter sets the output root directory -->
 	      <arg value="-d"/>
@@ -90,7 +92,7 @@
 	      <arg value="-b"/>
 		  <arg value="${spitterService-wsdl2java-bindinig-path}"/>    	
 	    	
-	      <!-- actual input WSDL -->
+	      <!-- actual input WSDL path-->
 	      <arg value="${spitterService-java2wsdl-wsdl-path}"/>
 	    </java>
 	  	
