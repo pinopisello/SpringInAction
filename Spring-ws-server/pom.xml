@@ -52,14 +52,19 @@
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<executions>
 					<execution>
-					<phase>compile</phase>
+					<phase>generate-sources</phase>
 						<goals>
 							<goal>generate</goal>
 					    </goals>
+					    <configuration>
+					    <!-- Directory dove droppa il codice JAXB generato -->
+					    <generateDirectory>src/main/java</generateDirectory>
+					    </configuration>
 					</execution>
 				</executions>
 			</plugin>
-			
+
+
 			<plugin>
 				<inherited>true</inherited>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -77,16 +82,17 @@
 			<artifactId>spring-ws-core</artifactId>
 			<version>${spring-ws.version}</version>
 		</dependency>
-		<dependency>
+		<!--  <dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-core-tiger</artifactId>
 			<version>${spring-ws.version}</version>
-		</dependency>
-		<dependency>
+		</dependency>-->
+		 <dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-support</artifactId>
 			<version>${spring-ws.version}</version>
 		</dependency>
+		
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -104,7 +110,7 @@
 
 	</dependencies>
 	<properties>
-		<spring-ws.version>1.5.9</spring-ws.version>
+		<spring-ws.version>2.0.2.RELEASE</spring-ws.version>
 		<junit.version>4.8.2</junit.version>
 	</properties>
 </project>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:oxm="http://www.springframework.org/schema/oxm"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
       http://www.springframework.org/schema/context	http://www.springframework.org/schema/context/spring-context-3.0.xsd
@@ -36,12 +38,28 @@
 	</bean>
 
 
-  <!-- 
-  	   Scansiona tutti e beans nel context annotati con @Endpoint e li registra internamente.Vedi AbstractAnnotationMethodEndpointMapping.initApplicationContext().
+  <!-- Questo e' l' EndpointMapping object invocato datta MessageDispatcher to find a matching endpoint per la request. 
+  	   Scansiona tutti e beans nel context annotati con @Endpoint e li registra internamente.
+  	   
+  	   Vedi AbstractAnnotationMethodEndpointMapping.initApplicationContext().
        Viene interrogato dal MessageDispatcher.getEndpoint(messageContext) per mappare request verso uno degli endpoint registrati. 
-       Questo endpointMapping viene inserito in SoapMessageDispatcher automaticamente.Vedi MessageDispatcher.initEndpointMappings(). -->  
-  <bean id="payloadMapper" class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping" />
+       Questo endpointMapping viene inserito in SoapMessageDispatcher automaticamente.Vedi MessageDispatcher.initEndpointMappings(). 
+       
+       La collezione dei metodi mappiti e' in e' la key e' data dalla annotazione Qname[namespace+localPart]   
+       @PayloadRoot(localPart="HolidayRequest", namespace="http://mycompany.com/hr/schemas")
+       
+       PayloadRootAnnotationMethodEndpointMapping implements ApplicationContextAware, quindi Spring chiama il suo metodo 
+       setApplicationContext() prima di ritornarlo per uso nell applicazione.
+       setApplicationContext() e' definito in ApplicationObjectSupport e chiama AbstractAnnotationMethodEndpointMapping.initApplicationContext() 
+       Qui tutti i beans registrati in Spring vengono scansionati e quelli annotati con @Endpoint sono registrati
+       
+       -->  
+   
+   
+    <bean id="payloadMapper" class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping" />
 
+
+    <!-- SoapMessageDispatcher extends MessageDispatcher ed e' l'entry point ,come MessageDispatchServlet lo e' per http transport. -->
 	<bean id="messageDispatcher" class="org.springframework.ws.soap.server.SoapMessageDispatcher"/>
 
 
@@ -53,8 +71,6 @@
  		<constructor-arg ref="jaxb2marshaller" />
     </bean>
 
-
- 
 
 	<bean	id="messageListnerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />

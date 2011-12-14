@@ -1,8 +1,5 @@
 package com.habuma.spitter.remoting.jaxws.SEI;
 
-import javax.jws.WebParam;
-import javax.jws.WebParam.Mode;
-
 import com.habuma.spitter.remoting.jaxws.server.Spitter;
 import com.habuma.spitter.remoting.jaxws.server.Spittle;
 
