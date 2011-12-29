@@ -24,10 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType>
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
- *         &lt;element name="Holiday" type="{http://mycompany.com/hr/schemas}HolidayType"/>
- *         &lt;element name="Employee" type="{http://mycompany.com/hr/schemas}EmployeeType"/>
- *       &lt;/all>
+ *       &lt;sequence>
+ *         &lt;element name="outcome" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -37,62 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-
+    "outcome"
 })
-@XmlRootElement(name = "HolidayRequest")
-public class HolidayRequest {
+@XmlRootElement(name = "HolidayResponse")
+public class HolidayResponse {
 
-    @XmlElement(name = "Holiday", required = true)
-    protected HolidayType holiday;
-    @XmlElement(name = "Employee", required = true)
-    protected EmployeeType employee;
+    @XmlElement(required = true)
+    protected String outcome;
 
     /**
-     * Gets the value of the holiday property.
+     * Gets the value of the outcome property.
      * 
      * @return
      *     possible object is
-     *     {@link HolidayType }
+     *     {@link String }
      *     
      */
-    public HolidayType getHoliday() {
-        return holiday;
+    public String getOutcome() {
+        return outcome;
     }
 
     /**
-     * Sets the value of the holiday property.
+     * Sets the value of the outcome property.
      * 
      * @param value
      *     allowed object is
-     *     {@link HolidayType }
+     *     {@link String }
      *     
      */
-    public void setHoliday(HolidayType value) {
-        this.holiday = value;
-    }
-
-    /**
-     * Gets the value of the employee property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EmployeeType }
-     *     
-     */
-    public EmployeeType getEmployee() {
-        return employee;
-    }
-
-    /**
-     * Sets the value of the employee property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EmployeeType }
-     *     
-     */
-    public void setEmployee(EmployeeType value) {
-        this.employee = value;
+    public void setOutcome(String value) {
+        this.outcome = value;
     }
 
 }

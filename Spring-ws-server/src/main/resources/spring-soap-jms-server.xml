@@ -16,8 +16,6 @@
     <context:component-scan base-package="server_endpoints"/>
 
 
-    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
-
 	<bean id="connectionFactory" class="com.ibm.mq.jms.MQConnectionFactory">
 		<property name="transportType">
 			<value>1</value>
@@ -38,7 +36,8 @@
 	</bean>
 
 
-  <!-- Questo e' l' EndpointMapping object invocato datta MessageDispatcher to find a matching endpoint per la request. 
+  <!-- ==== ENDPOINT MAPPING =====
+       Questo e' l' EndpointMapping object invocato dal MessageDispatcher per trovare a matching endpoint per la request. 
   	   Scansiona tutti e beans nel context annotati con @Endpoint e li registra internamente.
   	   
   	   Vedi AbstractAnnotationMethodEndpointMapping.initApplicationContext().
@@ -52,29 +51,45 @@
        setApplicationContext() prima di ritornarlo per uso nell applicazione.
        setApplicationContext() e' definito in ApplicationObjectSupport e chiama AbstractAnnotationMethodEndpointMapping.initApplicationContext() 
        Qui tutti i beans registrati in Spring vengono scansionati e quelli annotati con @Endpoint sono registrati
-       
        -->  
-   
-   
     <bean id="payloadMapper" class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping" />
 
 
-    <!-- SoapMessageDispatcher extends MessageDispatcher ed e' l'entry point ,come MessageDispatchServlet lo e' per http transport. -->
+    <!-- ==== MESSAGGE DISPATCHER =====
+    SoapMessageDispatcher extends MessageDispatcher ed e' l'entry point ,come MessageDispatchServlet lo e' per http transport.
+    E' iniettato in WebServiceMessageReceiverObjectSupport (WebServiceMessageListener extends WebServiceMessageReceiverObjectSupport).
+     -->
 	<bean id="messageDispatcher" class="org.springframework.ws.soap.server.SoapMessageDispatcher"/>
 
 
-	<!-- marshaller e endpointAdapter effecttuano il marshll/unmarshall prima che le requests colpicono gli endpoint, dopo che l'endpoint
-	     ha ritornato la risposta  -->
-   	<oxm:jaxb2-marshaller id="jaxb2marshaller" contextPath="com.mycompany.hr.schemas"/>
-   
+    <!-- 
+    E' una delle WebServiceConnectionFactory possibili per creare una istanza WebServiceMessagge.
+    E' iniettato in WebServiceMessageReceiverObjectSupport (WebServiceMessageListener extends WebServiceMessageReceiverObjectSupport).
+    E' usata per convertire un JMS in arrivo in un istanza WebServiceMessage i AbstractWebServiceConnection.receive.
+     -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+
+
+
+  <!--   ==== MESSAGGE ADAPTER===== -->
     <bean id="endpointAdapter"  class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
  		<constructor-arg ref="jaxb2marshaller" />
     </bean>
+    
+	<!--  
+	Iniettato nel costruttore di endpointAdapter
+	Marshaller e endpointAdapter effecttuano il marshll/unmarshall prima che le requests colpicono gli endpoint, dopo che l'endpoint
+	     ha ritornato la risposta  -->
+   	<oxm:jaxb2-marshaller id="jaxb2marshaller" contextPath="com.mycompany.hr.schemas"/>
+   
+   
+ 
 
-
+<!--   ====  TUTTI COMPONENTI INSIEME NEL CONTAINER ===== -->
 	<bean	id="messageListnerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destinationName" value="QA.KP.XCELYS.REQ" />
+		<property name="receiveTimeout" value="3000" /> <!-- Intervallo che AsyncMessageListenerInvoker attende tra due letture consecutive della queue  -->
 		<property name="messageListener">
 			<bean
 				class="org.springframework.ws.transport.jms.WebServiceMessageListener">

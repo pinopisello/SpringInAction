@@ -57,6 +57,7 @@
 							<goal>generate</goal>
 					    </goals>
 					    <configuration>
+					    <schemaDirectory>src/main/resources</schemaDirectory>
 					    <!-- Directory dove droppa il codice JAXB generato -->
 					    <generateDirectory>src/main/java</generateDirectory>
 					    </configuration>

@@ -34,7 +34,8 @@
 		</property>
 		<property name="marshaller"   ref="jaxb2marshaller"/>
 		<property name="unmarshaller" ref="jaxb2marshaller"/>
-		<property name="defaultUri" value="jms:QA.KP.XCELYS.REQ?receiveTimeout=10&amp;messageType=TEXT_MESSAGE&amp;priority=9&amp;deliveryMode=PERSISTENT&amp;timeToLive=50000" />
+		<!-- Qui indico i dettagli di qual e' la queue che riceve il messaggio JMS, JMS HEADERS ,etc etc-->
+		<property name="defaultUri" value="jms:QA.KP.XCELYS.REQ?receiveTimeout=10&amp;messageType=TEXT_MESSAGE&amp;priority=9&amp;deliveryMode=PERSISTENT&amp;timeToLive=50000&amp;replyToName=QA.KP.XCELYS.RESP" />
 	</bean>
 
 

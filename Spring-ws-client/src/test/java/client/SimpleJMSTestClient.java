@@ -27,9 +27,6 @@ import common.CommonTestCase;
 
 public class SimpleJMSTestClient  extends CommonTestCase{
 	
-	private static final String MESSAGE =
-		"<message xmlns=\"http://tempuri.org\">Hello Web Service World</message>";
-
 	@BeforeClass
 	public static void setup(){
 		  ctx =   new ClassPathXmlApplicationContext("classpath*:spring-soap-jms-client.xml"); 		
@@ -57,8 +54,9 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 		  employee.setNumber(new BigInteger("45"));
 		  hrequest.setEmployee(employee);
 		  
-	//	  webServiceTemplate.marshalSendAndReceive(hrequest);
-		  
+	      //webServiceTemplate.marshalSendAndReceive(hrequest);
+		  //Il callback permette di modificare la request DOPO che il payload e' stato settato 
+		  //ma PRIMA che la request venga effettivamente inviata
 		  webServiceTemplate.marshalSendAndReceive( hrequest, new WebServiceMessageCallback() {
 
 			  //Setto il CorrelationID nell'omonimo jms message header 
@@ -66,8 +64,13 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 	            	TransportContext transportContext = TransportContextHolder.getTransportContext();
 	                JmsSenderConnection connection = (JmsSenderConnection) transportContext.getConnection();
 	                String corrID = Long.toString(System.currentTimeMillis());
+	                
+	              
+	                String JMSReplyTo =  "QA.KP.XCELYS.RESP";
 	                try {
 	                    connection.getRequestMessage().setJMSCorrelationID(corrID);
+	                    //Usato dal receiver per capire quale queue droppare la risposta
+	                    //connection.getRequestMessage().setJMSReplyTo();
 	                }
 	                catch (JMSException e) {
 	                    throw new JmsTransportException(e);
