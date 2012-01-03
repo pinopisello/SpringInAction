@@ -31,7 +31,6 @@ public class SimpleJMSTestServer  extends CommonTestCase{
 		System.out.println("DefaultMessageListenerContainer on");//Blocca il debugger qua , altrimenti il processo esce!
 																 //JUnit non permette di mettere un while(true) [lancia errore]
 																 //Meglio usare SimpleJMSTestServerNotUnit che permette while(true)
-
 	  }
 	
 }
