@@ -26,7 +26,7 @@
 
 	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
 		<constructor-arg ref="messageFactory" />
-		<property name="messageSender">
+		<property name="messageSender"><!-- Usa CommonHttpMessageSender in caso http transport -->
 			<bean class="org.springframework.ws.transport.jms.JmsMessageSender">
 				<property name="connectionFactory" ref="connectionFactory" />
 				<property name="receiveTimeout"><value>100</value></property>
@@ -35,7 +35,8 @@
 		<property name="marshaller"   ref="jaxb2marshaller"/>
 		<property name="unmarshaller" ref="jaxb2marshaller"/>
 		<!-- Qui indico i dettagli di qual e' la queue che riceve il messaggio JMS, JMS HEADERS ,etc etc-->
-		<property name="defaultUri" value="jms:QA.KP.XCELYS.REQ?receiveTimeout=10&amp;messageType=TEXT_MESSAGE&amp;priority=9&amp;deliveryMode=PERSISTENT&amp;timeToLive=50000&amp;replyToName=QA.KP.XCELYS.RESP" />
+		<property name="defaultUri" value="jms:QA.KP.XCELYS.REQ?receiveTimeout=10&amp;messageType=TEXT_MESSAGE&amp;priority=9&amp;deliveryMode=PERSISTENT&amp;timeToLive=50000" />
+																											<!-- Setta la queue di risposta &amp;replyToName=QA.KP.XCELYS.RESP -->
 	</bean>
 
 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 
 import javax.jms.JMSException;
+import javax.xml.namespace.QName;
 import javax.xml.transform.TransformerException;
 
 import org.junit.AfterClass;
@@ -14,6 +15,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.ws.WebServiceMessage;
 import org.springframework.ws.client.core.WebServiceMessageCallback;
 import org.springframework.ws.client.core.WebServiceTemplate;
+import org.springframework.ws.soap.SoapHeader;
+import org.springframework.ws.soap.SoapHeaderElement;
+import org.springframework.ws.soap.SoapMessage;
 import org.springframework.ws.transport.context.TransportContext;
 import org.springframework.ws.transport.context.TransportContextHolder;
 import org.springframework.ws.transport.jms.JmsSenderConnection;
@@ -49,8 +53,8 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 		
 		  HolidayRequest hrequest = new  HolidayRequest();
 		  EmployeeType employee = new EmployeeType();
-		  employee.setFirstName("primonome");
-		  employee.setLastName("ultimonome");
+		  employee.setFirstName("xyz");
+		  employee.setLastName("gfh");
 		  employee.setNumber(new BigInteger("45"));
 		  hrequest.setEmployee(employee);
 		  
@@ -61,22 +65,40 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 
 			  //Setto il CorrelationID nell'omonimo jms message header 
 	            public void doWithMessage(WebServiceMessage request) throws IOException, TransformerException {
+	            	//Aggiungo SOAP HEADER attribute e/o element
+	            	/*
+	            	<soapenv:Header xmlns:diamond="http://diamond.perotsystems.com">
+		            	<diamond:DiamondContext>
+			            	<SecurityUsername>SVC_BNFT</SecurityUsername>
+			            	<SecurityPassword>bnftda</SecurityPassword>
+		            	</diamond:DiamondContext>
+	            	</soapenv:Header>
+	            	
+	            	//header.addAttribute(new javax.xml.namespace.QName("http://ddddd.ff.dddddd", "","diamond"), "sss");//  public QName(String namespaceURI, String localPart, String prefix) {
+	            	*/
+	            	
+	            	SoapHeader header = ((SoapMessage)request).getSoapHeader();
+	            	header.addNamespaceDeclaration("diamond", "http://diamond.perotsystems.com");
+	            	QName parentHeaderElement = new QName("diamond", "DiamondContext","diamond");
+	            	QName childHeaderElement = new QName("http://ddddd.ff.dd", "takpayer","oo");
+	            	
+	            	SoapHeaderElement soapElement = header.addHeaderElement(parentHeaderElement);
+	            	
+	            	//soapElement.setText("wewewe");
+	            	
 	            	TransportContext transportContext = TransportContextHolder.getTransportContext();
 	                JmsSenderConnection connection = (JmsSenderConnection) transportContext.getConnection();
 	                String corrID = Long.toString(System.currentTimeMillis());
 	                
-	              
-	                String JMSReplyTo =  "QA.KP.XCELYS.RESP";
 	                try {
 	                    connection.getRequestMessage().setJMSCorrelationID(corrID);
+	                    System.out.println(connection.getRequestMessage());
 	                    //Usato dal receiver per capire quale queue droppare la risposta
-	                    //connection.getRequestMessage().setJMSReplyTo();
+	                    
 	                }
 	                catch (JMSException e) {
 	                    throw new JmsTransportException(e);
 	                }
-
-	            	
 	            }
 	        });
 		 
