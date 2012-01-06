@@ -20,11 +20,11 @@
     <!-- Permette di far funzionare , nelle operations, i paramtri input come SoapHeader, SoapMessage, SoapBody, SoapEnvelope  -->
     <sws:annotation-driven />
 
+<!--  
 	<bean id="connectionFactory" class="com.ibm.mq.jms.MQConnectionFactory">
 		<property name="transportType">
 			<value>1</value>
 		</property>
-		<!-- <property name="queue"><value>QA.KP.XCELYS.RESP</value></property> -->
 		<property name="queueManager">
 			<value>QSG3</value>
 		</property>
@@ -36,6 +36,17 @@
 		</property>
 		<property name="channel">
 			<value>XCLS_ZOS.SVRCONN</value>
+		</property>
+	</bean>
+	-->
+
+<!-- CA DEV 3-->
+	<bean id="connectionFactory" class="com.ibm.mq.jms.MQConnectionFactory">
+		<property name="transportType"><value>1</value></property>
+		<property name="queueManager"><value>QAKPIB00</value></property>
+		<property name="hostName"><value>szadie11.ssdc.kp.org</value></property>
+		<property name="port"><value>51416</value></property>
+		<property name="channel"><value>XCLS_OUT_WMB.SVRCONN</value>
 		</property>
 	</bean>
 
@@ -90,7 +101,7 @@
 <!--   ====  TUTTI COMPONENTI INSIEME NEL CONTAINER ===== -->
 	<bean	id="messageListnerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
-		<property name="destinationName" value="QA.KP.XCELYS.REQ" />
+		<property name="destinationName" value="QA.KP.XCELYS.CA.REQ" />
 		<property name="receiveTimeout" value="3000" /> <!-- Intervallo che AsyncMessageListenerInvoker attende tra due letture consecutive della queue  -->
 		<property name="messageListener">
 			<bean

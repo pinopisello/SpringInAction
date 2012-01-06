@@ -10,7 +10,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.maven.ide.eclipse.MAVEN2_CLASSPATH_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/com.ibm.mq.commonservices_7.0.1.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Spring-ws-server"/>
 	<classpathentry kind="lib" path="lib/com.ibm.mq.headers.jar"/>
 	<classpathentry kind="lib" path="lib/com.ibm.mq.jar"/>
 	<classpathentry kind="lib" path="lib/com.ibm.mq.jmqi.jar"/>
@@ -22,6 +22,5 @@
 	<classpathentry kind="lib" path="lib/jms.jar"/>
 	<classpathentry kind="lib" path="lib/jta.jar"/>
 	<classpathentry kind="lib" path="lib/providerutil.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Spring-ws-server"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

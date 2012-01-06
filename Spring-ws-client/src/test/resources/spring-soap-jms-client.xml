@@ -13,31 +13,53 @@
 	
 	<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory" />
 
+<!-- CO DEV 
 	<bean id="connectionFactory" class="com.ibm.mq.jms.MQConnectionFactory">
 		<property name="transportType"><value>1</value></property>
-		<!-- <property name="queue"><value>QA.KP.XCELYS.RESP</value></property> -->
 		<property name="queueManager"><value>QSG3</value></property>
 		<property name="hostName"><value>mvsd10c.crdc.kp.org</value></property>
 		<property name="port"><value>1444</value></property>
 		<property name="channel"><value>XCLS_ZOS.SVRCONN</value>
 		</property>
 	</bean>
+-->
 
+
+<!-- CA DEV 3-->
+	<bean id="connectionFactory" class="com.ibm.mq.jms.MQConnectionFactory">
+		<property name="transportType"><value>1</value></property>
+		<property name="queueManager"><value>QAKPIB00</value></property>
+		<property name="hostName"><value>szadie11.ssdc.kp.org</value></property>
+		<property name="port"><value>51416</value></property>
+		<property name="channel"><value>XCLS_OUT_WMB.SVRCONN</value>
+		</property>
+	</bean>
+
+
+	<!-- Client Interceptors -->
+	<bean id="interceptor1" class="interceptor.Interceptor1"/>
+	<bean id="interceptor2" class="interceptor.Interceptor2"/>
+	
 
 	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
 		<constructor-arg ref="messageFactory" />
 		<property name="messageSender"><!-- Usa CommonHttpMessageSender in caso http transport -->
 			<bean class="org.springframework.ws.transport.jms.JmsMessageSender">
 				<property name="connectionFactory" ref="connectionFactory" />
-				<property name="receiveTimeout"><value>100</value></property>
+				<property name="receiveTimeout"><value>30000</value></property>
 			</bean>
 		</property>
 		<property name="marshaller"   ref="jaxb2marshaller"/>
 		<property name="unmarshaller" ref="jaxb2marshaller"/>
-		<!-- Qui indico i dettagli di qual e' la queue che riceve il messaggio JMS, JMS HEADERS ,etc etc-->
-		<property name="defaultUri" value="jms:QA.KP.XCELYS.REQ?receiveTimeout=10&amp;messageType=TEXT_MESSAGE&amp;priority=9&amp;deliveryMode=PERSISTENT&amp;timeToLive=50000" />
+		<property name="interceptors">
+			<array>
+				<ref bean="interceptor1"/>
+				<ref bean="interceptor2"/>
+			</array>
+		</property>
+		
+		<!-- Qui indico i dettagli di qual e' la queue che riceve la JMS request, la queue dove il client attende per la risposta, JMS HEADERS ,letc etc-->
+		<property name="defaultUri" value="jms:QA.KP.XCELYS.CA.REQ?receiveTimeout=10&amp;messageType=TEXT_MESSAGE&amp;priority=9&amp;deliveryMode=PERSISTENT&amp;timeToLive=500000&amp;replyToName=QA.CA.XCELYS.GRP.CHG.PBLSH.EVN" />
 																											<!-- Setta la queue di risposta &amp;replyToName=QA.KP.XCELYS.RESP -->
 	</bean>
-
-
 </beans>

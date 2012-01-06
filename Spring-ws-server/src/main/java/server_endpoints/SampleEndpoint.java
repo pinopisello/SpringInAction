@@ -24,11 +24,10 @@ public class SampleEndpoint  {
 	@PayloadRoot(localPart="HolidayRequest", namespace="http://mycompany.com/hr/schemas")
 	public  HolidayResponse  getOrder(@RequestPayload HolidayRequest holidayRequest,SoapHeader soapHeader,SoapMessage soapMessage, SoapBody soapBody, SoapEnvelope soapEnvelope)throws Exception {
 		HolidayResponse out = new HolidayResponse();
-		out.setOutcome("positivo");
+		out.setOutcome("667");
 		System.out.println("HolidayRequest per "+holidayRequest.getEmployee().getFirstName());
 		//if (true)
 		//throw new Exception("pippo");
 		return  out;
     }
-
 }

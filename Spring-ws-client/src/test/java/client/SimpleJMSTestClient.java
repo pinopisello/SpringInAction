@@ -4,7 +4,12 @@ package client;
 import java.io.IOException;
 import java.math.BigInteger;
 
+import javax.jms.Connection;
 import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.Queue;
+import javax.jms.Session;
 import javax.xml.namespace.QName;
 import javax.xml.transform.TransformerException;
 
@@ -26,6 +31,7 @@ import org.springframework.ws.transport.jms.JmsTransportException;
 import com.ibm.mq.jms.MQConnectionFactory;
 import com.mycompany.hr.schemas.EmployeeType;
 import com.mycompany.hr.schemas.HolidayRequest;
+import com.mycompany.hr.schemas.HolidayResponse;
 import common.CommonTestCase;
 
 
@@ -47,7 +53,22 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 	@Test
 	public void sendTestJMS() {
 		 //verifico instanza mqconnectionFactory dichiarata nel xml
+		// e provo a creare una connessione, un consumer e provo a leggere un message con un selector.
+		/*  try{
 		  MQConnectionFactory mqconnectionFactory = (MQConnectionFactory)ctx.getBean("connectionFactory");
+		  Connection conn = mqconnectionFactory.createConnection();
+		  conn.start();
+		  Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		  Queue responsequeue =  session.createQueue("QA.CA.XCELYS.GRP.CHG.PBLSH.EVN");
+          String messageSelector = "JMSMessageID='ID:414d512051414b5049423030202020204ede75342d5fef09'";
+          MessageConsumer messageConsumer = session.createConsumer(responsequeue,messageSelector);
+          Message messaggioLetto = messageConsumer.receive(1111) ;// receive(3000);
+          
+		  System.out.println(messaggioLetto);
+		  }catch(JMSException je){
+			  je.printStackTrace();
+		  }
+*/
 		  
 		  WebServiceTemplate  webServiceTemplate = (WebServiceTemplate)ctx.getBean("webServiceTemplate");
 		
@@ -61,7 +82,7 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 	      //webServiceTemplate.marshalSendAndReceive(hrequest);
 		  //Il callback permette di modificare la request DOPO che il payload e' stato settato 
 		  //ma PRIMA che la request venga effettivamente inviata
-		  webServiceTemplate.marshalSendAndReceive( hrequest, new WebServiceMessageCallback() {
+		  HolidayResponse risposta = (HolidayResponse)webServiceTemplate.marshalSendAndReceive( hrequest, new WebServiceMessageCallback() {
 
 			  //Setto il CorrelationID nell'omonimo jms message header 
 	            public void doWithMessage(WebServiceMessage request) throws IOException, TransformerException {
@@ -84,29 +105,32 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 	            	
 	            	SoapHeaderElement soapElement = header.addHeaderElement(parentHeaderElement);
 	            	
-	            	//soapElement.setText("wewewe");
-	            	
 	            	TransportContext transportContext = TransportContextHolder.getTransportContext();
 	                JmsSenderConnection connection = (JmsSenderConnection) transportContext.getConnection();
 	                String corrID = Long.toString(System.currentTimeMillis());
 	                
-	                try {
+	                /*    try {
 	                    connection.getRequestMessage().setJMSCorrelationID(corrID);
+	                    connection.getRequestMessage().setJMSMessageID(corrID); //Se imponi JMSCorrelationID,devi imporre JMSMessageID nella request altrimenti il client non ricevera' la response.
 	                    System.out.println(connection.getRequestMessage());
 	                    //Usato dal receiver per capire quale queue droppare la risposta
+	                    //Attenzione!! Lato server[JmsReceiverConnection.onSendBeforeWrite] legge il JMSCorrelationId della request e lo scrive nel 
+	                    //JMSCorrelationId della response.Se JMSCorrelationId id request e' null, server setta JMSCorrelationId response = JMSMessageID request.
+	                    
+	                    //Il client legge la response SEMPRE filtrando su response.JMSCorrelationId = request.JMSMessageID.
+	                    
+	                    //Quindi se si impone un JMSCorrelationId nella request, occorre settare JMSMessageId request in JmsSenderConnection.requestMessage.
+	                    
+	                    
 	                    
 	                }
 	                catch (JMSException e) {
 	                    throw new JmsTransportException(e);
-	                }
+	                }*/
 	            }
 	        });
 		 
-		 /* 
-		  StreamSource source = new StreamSource(new StringReader(MESSAGE));
-		  StreamResult result = new StreamResult(System.out);
-		  webServiceTemplate.sendSourceAndReceiveToResult(source, result);
-		  */
+		System.out.println("Risposta outcome = " + risposta.getOutcome());
 	}
 
 }
