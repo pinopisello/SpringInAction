@@ -78,22 +78,25 @@
 		</plugins>
 	</build>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.ws</groupId>
-			<artifactId>spring-ws-core</artifactId>
-			<version>${spring-ws.version}</version>
-		</dependency>
 		<!--  <dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-core-tiger</artifactId>
 			<version>${spring-ws.version}</version>
 		</dependency>-->
+		
+		
+		<!-- Contiene classi tipo DefaultMessageListenerContainer per JMS server-->
 		 <dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-support</artifactId>
 			<version>${spring-ws.version}</version>
 		</dependency>
 		
+		<dependency>
+	        <groupId>org.springframework.ws</groupId>
+	        <artifactId>spring-ws-security</artifactId>
+	        <version>${spring-ws.version}</version>
+         </dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -113,11 +116,48 @@
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-test</artifactId>
 			<version>${spring-ws.version}</version>
+			 <exclusions>
+			    <exclusion>
+	        		<artifactId>spring-core</artifactId>
+	        		<groupId>org.springframework</groupId>
+	        	</exclusion>
+	        	<exclusion>
+	        		<artifactId>spring-tx</artifactId>
+	        		<groupId>org.springframework</groupId>
+	        	</exclusion>
+	        	<exclusion>
+	        		<artifactId>spring-ws-core</artifactId>
+	        		<groupId>org.springframework.ws</groupId>
+	        	</exclusion>
+	        	<exclusion>
+	        		<artifactId>spring-beans</artifactId>
+	        		<groupId>org.springframework</groupId>
+	        	</exclusion>
+	        	<exclusion>
+	        		<artifactId>spring-core</artifactId>
+	        		<groupId>org.springframework</groupId>
+	        	</exclusion>
+	        </exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+		
 		
 	</dependencies>
 	<properties>
-		<spring-ws.version>2.0.2.RELEASE</spring-ws.version>
+		<spring-ws.version>2.0.3.RELEASE</spring-ws.version>
 		<junit.version>4.8.2</junit.version>
 	</properties>
 </project>

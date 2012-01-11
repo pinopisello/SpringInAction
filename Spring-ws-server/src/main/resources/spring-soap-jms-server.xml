@@ -1,108 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:oxm="http://www.springframework.org/schema/oxm"
-	xmlns:sws="http://www.springframework.org/schema/web-services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:oxm="http://www.springframework.org/schema/oxm" xmlns:sws="http://www.springframework.org/schema/web-services"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
       http://www.springframework.org/schema/context	http://www.springframework.org/schema/context/spring-context-3.0.xsd
       http://www.springframework.org/schema/util	http://www.springframework.org/schema/util/spring-util-3.0.xsd
       http://www.springframework.org/schema/oxm		http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd
       http://www.springframework.org/schema/web-services	http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
 
-    <!-- Trova e istanzia Endpoints annotati @Endpoint senza necessita di dichiaranli come <bean> 
-         Infatti l' annotazione @Endpoint di per se e' anche @Component!!
-    -->
-    <context:component-scan base-package="server_endpoints"/>
-    
-    <!-- Permette di far funzionare , nelle operations, i paramtri input come SoapHeader, SoapMessage, SoapBody, SoapEnvelope  -->
-    <sws:annotation-driven />
+	<!-- Trova e istanzia Endpoints annotati @Endpoint senza necessita di dichiaranli 
+		come <bean> Infatti l' annotazione @Endpoint di per se e' anche @Component!! -->
+	<context:component-scan base-package="server_endpoints" />
 
-<!--  
+	<!-- Permette di far funzionare , nelle operations, i paramtri input come 
+		SoapHeader, SoapMessage, SoapBody, SoapEnvelope -->
+	<sws:annotation-driven />
+
+	<!-- <bean id="connectionFactory" class="com.ibm.mq.jms.MQConnectionFactory"> 
+		<property name="transportType"> <value>1</value> </property> <property name="queueManager"> 
+		<value>QSG3</value> </property> <property name="hostName"> <value>mvsd10c.crdc.kp.org</value> 
+		</property> <property name="port"> <value>1444</value> </property> <property 
+		name="channel"> <value>XCLS_ZOS.SVRCONN</value> </property> </bean> -->
+
+	<!-- CA DEV 3 -->
 	<bean id="connectionFactory" class="com.ibm.mq.jms.MQConnectionFactory">
 		<property name="transportType">
 			<value>1</value>
 		</property>
 		<property name="queueManager">
-			<value>QSG3</value>
+			<value>QAKPIB00</value>
 		</property>
 		<property name="hostName">
-			<value>mvsd10c.crdc.kp.org</value>
+			<value>szadie11.ssdc.kp.org</value>
 		</property>
 		<property name="port">
-			<value>1444</value>
+			<value>51416</value>
 		</property>
 		<property name="channel">
-			<value>XCLS_ZOS.SVRCONN</value>
-		</property>
-	</bean>
-	-->
-
-<!-- CA DEV 3-->
-	<bean id="connectionFactory" class="com.ibm.mq.jms.MQConnectionFactory">
-		<property name="transportType"><value>1</value></property>
-		<property name="queueManager"><value>QAKPIB00</value></property>
-		<property name="hostName"><value>szadie11.ssdc.kp.org</value></property>
-		<property name="port"><value>51416</value></property>
-		<property name="channel"><value>XCLS_OUT_WMB.SVRCONN</value>
+			<value>XCLS_OUT_WMB.SVRCONN</value>
 		</property>
 	</bean>
 
 
-  <!-- ==== ENDPOINT MAPPING =====
-       Questo e' l' EndpointMapping object invocato dal MessageDispatcher per trovare a matching endpoint per la request. 
-  	   Scansiona tutti e beans nel context annotati con @Endpoint e li registra internamente.
-  	   
-  	   Vedi AbstractAnnotationMethodEndpointMapping.initApplicationContext().
-       Viene interrogato dal MessageDispatcher.getEndpoint(messageContext) per mappare request verso uno degli endpoint registrati. 
-       Questo endpointMapping viene inserito in SoapMessageDispatcher automaticamente.Vedi MessageDispatcher.initEndpointMappings(). 
-       
-       La collezione dei metodi mappiti e' in e' la key e' data dalla annotazione Qname[namespace+localPart]   
-       @PayloadRoot(localPart="HolidayRequest", namespace="http://mycompany.com/hr/schemas")
-       
-       PayloadRootAnnotationMethodEndpointMapping implements ApplicationContextAware, quindi Spring chiama il suo metodo 
-       setApplicationContext() prima di ritornarlo per uso nell applicazione.
-       setApplicationContext() e' definito in ApplicationObjectSupport e chiama AbstractAnnotationMethodEndpointMapping.initApplicationContext() 
-       Qui tutti i beans registrati in Spring vengono scansionati e quelli annotati con @Endpoint sono registrati
-       -->  
-    <bean id="payloadMapper" class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping" />
+	<!-- ==== ENDPOINT MAPPING ===== Questo e' l' EndpointMapping object invocato 
+		dal MessageDispatcher per trovare a matching endpoint per la request. Scansiona 
+		tutti e beans nel context annotati con @Endpoint e li registra internamente. 
+		Vedi AbstractAnnotationMethodEndpointMapping.initApplicationContext(). Viene 
+		interrogato dal MessageDispatcher.getEndpoint(messageContext) per mappare 
+		request verso uno degli endpoint registrati. Questo endpointMapping viene 
+		inserito in SoapMessageDispatcher automaticamente.Vedi MessageDispatcher.initEndpointMappings(). 
+		La collezione dei metodi mappiti e' in e' la key e' data dalla annotazione 
+		Qname[namespace+localPart] @PayloadRoot(localPart="HolidayRequest", namespace="http://mycompany.com/hr/schemas") 
+		PayloadRootAnnotationMethodEndpointMapping implements ApplicationContextAware, 
+		quindi Spring chiama il suo metodo setApplicationContext() prima di ritornarlo 
+		per uso nell applicazione. setApplicationContext() e' definito in ApplicationObjectSupport 
+		e chiama AbstractAnnotationMethodEndpointMapping.initApplicationContext() 
+		Qui tutti i beans registrati in Spring vengono scansionati e quelli annotati 
+		con @Endpoint sono registrati -->
+	<bean id="payloadMapper"
+		class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping" />
 
 
-    <!-- ==== MESSAGGE DISPATCHER =====
-    SoapMessageDispatcher extends MessageDispatcher ed e' l'entry point ,come MessageDispatchServlet lo e' per http transport.
-    E' iniettato in WebServiceMessageReceiverObjectSupport (WebServiceMessageListener extends WebServiceMessageReceiverObjectSupport).
-     -->
-	<bean id="messageDispatcher" class="org.springframework.ws.soap.server.SoapMessageDispatcher"/>
+	<!-- ==== MESSAGGE DISPATCHER ===== SoapMessageDispatcher extends MessageDispatcher 
+		ed e' l'entry point ,come MessageDispatchServlet lo e' per http transport. 
+		E' iniettato in WebServiceMessageReceiverObjectSupport (WebServiceMessageListener 
+		extends WebServiceMessageReceiverObjectSupport). -->
+	<bean id="messageDispatcher"
+		class="org.springframework.ws.soap.server.SoapMessageDispatcher" />
 
 
-    <!-- 
-    E' una delle WebServiceConnectionFactory possibili per creare una istanza WebServiceMessagge.
-    E' iniettato in WebServiceMessageReceiverObjectSupport (WebServiceMessageListener extends WebServiceMessageReceiverObjectSupport).
-    E' usata per convertire un JMS in arrivo in un istanza WebServiceMessage i AbstractWebServiceConnection.receive.
-     -->
-    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+	<!-- E' una delle WebServiceConnectionFactory possibili per creare una istanza 
+		WebServiceMessagge. E' iniettato in WebServiceMessageReceiverObjectSupport 
+		(WebServiceMessageListener extends WebServiceMessageReceiverObjectSupport). 
+		E' usata per convertire un JMS in arrivo in un istanza WebServiceMessage 
+		i AbstractWebServiceConnection.receive. -->
+	<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory" />
 
 
 
-  <!--   ==== MESSAGGE ADAPTER===== -->
-    <bean id="endpointAdapter"  class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
- 		<constructor-arg ref="jaxb2marshaller" />
-    </bean>
-    
-	<!--  
-	Iniettato nel costruttore di endpointAdapter
-	Marshaller e endpointAdapter effecttuano il marshll/unmarshall prima che le requests colpicono gli endpoint, dopo che l'endpoint
-	     ha ritornato la risposta  -->
-   	<oxm:jaxb2-marshaller id="jaxb2marshaller" contextPath="com.mycompany.hr.schemas"/>
-   
+	<!-- ==== MESSAGGE ADAPTER===== -->
+	<bean id="endpointAdapter"
+		class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+		<constructor-arg ref="jaxb2marshaller" />
+	</bean>
 
-<!--   ====  TUTTI COMPONENTI INSIEME NEL CONTAINER ===== -->
-	<bean	id="messageListnerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+	<!-- Iniettato nel costruttore di endpointAdapter Marshaller e endpointAdapter 
+		effecttuano il marshll/unmarshall prima che le requests colpicono gli endpoint, 
+		dopo che l'endpoint ha ritornato la risposta -->
+	<oxm:jaxb2-marshaller id="jaxb2marshaller"
+		contextPath="com.mycompany.hr.schemas" />
+
+
+	<!-- ==== TUTTI COMPONENTI INSIEME NEL CONTAINER ===== -->
+	<bean id="messageListnerContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="destinationName" value="QA.KP.XCELYS.CA.REQ" />
-		<property name="receiveTimeout" value="3000" /> <!-- Intervallo che AsyncMessageListenerInvoker attende tra due letture consecutive della queue  -->
+		<property name="receiveTimeout" value="3000" /> <!-- Intervallo che AsyncMessageListenerInvoker attende tra due letture consecutive 
+			della queue -->
 		<property name="messageListener">
 			<bean
 				class="org.springframework.ws.transport.jms.WebServiceMessageListener">
@@ -117,14 +113,39 @@
 
 	<sws:interceptors>
 		<!-- <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/> 
-		<bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>-->
-		<sws:payloadRoot namespaceUri="http://mycompany.com/hr/schemas" >
-			<bean class="server_endpoints.SimpleInterceptor"/>
+			<bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/> -->
+		<sws:payloadRoot namespaceUri="http://mycompany.com/hr/schemas">
+			<bean class="server_endpoints.SimpleInterceptor" />
 		</sws:payloadRoot>
+		<!-- Spring WS Security UserName Token Authentication -->
+		<bean id="usernameTokenPlainPwdInterceptor" class="org.springframework.ws.soap.security.xwss.XwsSecurityInterceptor">
+			<property name="policyConfiguration"	value="classpath:requiredUsernameToken-securityPolicy.xml" />
+			<property name="callbackHandlers" ref="springSecurityHandler">
+			</property>
+		</bean>
 	</sws:interceptors>
-	
-	<!-- ExCEPTION RESOLVER -->
-	<bean	id="mio_exception_resolver" class="server_endpoints.SimpleExceptionResolver"/>
+
+	<!-- EXCEPTION RESOLVER -->
+	<bean id="mio_exception_resolver" class="server_endpoints.SimpleExceptionResolver" />
+
+
+	<bean id="springSecurityHandler"
+		class="org.springframework.ws.soap.security.xwss.callback.SpringPlainTextPasswordValidationCallbackHandler">
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+
+
+	<bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+		<property name="providers">
+			<bean
+				class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+				<property name="userDetailsService" ref="userDetailsService" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="userDetailsService" class="server_endpoints.UserDetailService" />
+
 
 
 </beans>

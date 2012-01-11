@@ -128,9 +128,11 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 	                    throw new JmsTransportException(e);
 	                }*/
 	            }
-	        });
+	        }
+		  );
+		  
 		 
-		System.out.println("Risposta outcome = " + risposta.getOutcome());
+		
 	}
 
 }

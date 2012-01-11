@@ -26,6 +26,7 @@ public class SampleEndpoint  {
 		HolidayResponse out = new HolidayResponse();
 		out.setOutcome("667");
 		System.out.println("HolidayRequest per "+holidayRequest.getEmployee().getFirstName());
+		int e = 1/0;
 		//if (true)
 		//throw new Exception("pippo");
 		return  out;

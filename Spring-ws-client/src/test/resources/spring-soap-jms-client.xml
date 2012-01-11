@@ -40,6 +40,9 @@
 	<bean id="interceptor1" class="interceptor.Interceptor1"/>
 	<bean id="interceptor2" class="interceptor.Interceptor2"/>
 	
+	
+	<!-- Fault resolver -->
+	<bean id="simpleFaultMessageResolver" class="client.SimpleFaultMessageResolver"/>
 
 	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
 		<constructor-arg ref="messageFactory" />
@@ -57,7 +60,7 @@
 				<ref bean="interceptor2"/>
 			</array>
 		</property>
-		
+		<!--  <property name="faultMessageResolver" ref="simpleFaultMessageResolver"/> -->
 		<!-- Qui indico i dettagli di qual e' la queue che riceve la JMS request, la queue dove il client attende per la risposta, JMS HEADERS ,letc etc-->
 		<property name="defaultUri" value="jms:QA.KP.XCELYS.CA.REQ?receiveTimeout=10&amp;messageType=TEXT_MESSAGE&amp;priority=9&amp;deliveryMode=PERSISTENT&amp;timeToLive=500000&amp;replyToName=QA.CA.XCELYS.GRP.CHG.PBLSH.EVN" />
 																											<!-- Setta la queue di risposta &amp;replyToName=QA.KP.XCELYS.RESP -->

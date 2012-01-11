@@ -13,7 +13,8 @@
 --
 -Marshaller   marshaller
 -Unmarshaller unmarshaller
--DestinationProvider destinationProvider</panel_attributes>
+-DestinationProvider destinationProvider
+-FaultMessageResolver faultMessageResolver</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -165,7 +166,8 @@
       <w>260</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>DestinationProvider--
+    <panel_attributes>DestinationProvider
+--
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -179,5 +181,28 @@
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>30;30;200;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>580</x>
+      <y>590</y>
+      <w>280</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>FaultMessageResolver
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>380</x>
+      <y>530</y>
+      <w>220</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>30;30;200;70</additional_attributes>
   </element>
 </diagram>
