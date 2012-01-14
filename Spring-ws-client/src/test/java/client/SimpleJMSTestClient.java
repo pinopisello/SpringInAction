@@ -4,14 +4,10 @@ package client;
 import java.io.IOException;
 import java.math.BigInteger;
 
-import javax.jms.Connection;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
-import javax.jms.Queue;
-import javax.jms.Session;
 import javax.xml.namespace.QName;
+import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -26,9 +22,8 @@ import org.springframework.ws.soap.SoapMessage;
 import org.springframework.ws.transport.context.TransportContext;
 import org.springframework.ws.transport.context.TransportContextHolder;
 import org.springframework.ws.transport.jms.JmsSenderConnection;
-import org.springframework.ws.transport.jms.JmsTransportException;
+import org.springframework.xml.transform.StringSource;
 
-import com.ibm.mq.jms.MQConnectionFactory;
 import com.mycompany.hr.schemas.EmployeeType;
 import com.mycompany.hr.schemas.HolidayRequest;
 import com.mycompany.hr.schemas.HolidayResponse;
@@ -71,7 +66,7 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 */
 		  
 		  WebServiceTemplate  webServiceTemplate = (WebServiceTemplate)ctx.getBean("webServiceTemplate");
-		
+
 		  HolidayRequest hrequest = new  HolidayRequest();
 		  EmployeeType employee = new EmployeeType();
 		  employee.setFirstName("xyz");
@@ -88,23 +83,27 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 	            public void doWithMessage(WebServiceMessage request) throws IOException, TransformerException {
 	            	//Aggiungo SOAP HEADER attribute e/o element
 	            	/*
-	            	<soapenv:Header xmlns:diamond="http://diamond.perotsystems.com">
-		            	<diamond:DiamondContext>
-			            	<SecurityUsername>SVC_BNFT</SecurityUsername>
-			            	<SecurityPassword>bnftda</SecurityPassword>
-		            	</diamond:DiamondContext>
+	            	<soapenv:Header>
+			            <wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/xx/secext">
+				            <wsse:UserNameToken>
+					            <wsse:UserName>kpbetsuser</wsse:UserName>
+					            <wsse:Password>kpbetsuserpwd</wsse:Password>
+				            </wsse:UserNameToken>
+			            </wsse:Security>
 	            	</soapenv:Header>
 	            	
 	            	//header.addAttribute(new javax.xml.namespace.QName("http://ddddd.ff.dddddd", "","diamond"), "sss");//  public QName(String namespaceURI, String localPart, String prefix) {
 	            	*/
-	            	
-	            	SoapHeader header = ((SoapMessage)request).getSoapHeader();
-	            	header.addNamespaceDeclaration("diamond", "http://diamond.perotsystems.com");
-	            	QName parentHeaderElement = new QName("diamond", "DiamondContext","diamond");
-	            	QName childHeaderElement = new QName("http://ddddd.ff.dd", "takpayer","oo");
-	            	
-	            	SoapHeaderElement soapElement = header.addHeaderElement(parentHeaderElement);
-	            	
+	            	 SoapHeader header = ((SoapMessage)request).getSoapHeader();
+	            	 StringSource headerSource = new StringSource("<wsse:Security xmlns:wsse=\"http://schemas.xmlsoap.org/ws/2002/xx/secext\">"+
+				            "<wsse:UserNameToken>"+
+					            "<wsse:UserName>kpbetsuser</wsse:UserName>"+
+					            "<wsse:Password>kpbetsuserpwd</wsse:Password>"+
+				            "</wsse:UserNameToken>"+
+			            "</wsse:Security>");
+	                  Transformer transformer = TransformerFactory.newInstance().newTransformer();
+	                  transformer.transform(headerSource, header.getResult());
+
 	            	TransportContext transportContext = TransportContextHolder.getTransportContext();
 	                JmsSenderConnection connection = (JmsSenderConnection) transportContext.getConnection();
 	                String corrID = Long.toString(System.currentTimeMillis());
@@ -130,7 +129,7 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 	            }
 	        }
 		  );
-		  
+		  System.out.println("SimpleJMSTestClient ricevuto risposta.outcome = :" + risposta.getOutcome());
 		 
 		
 	}

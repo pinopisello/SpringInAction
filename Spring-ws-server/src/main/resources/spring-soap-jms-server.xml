@@ -122,7 +122,7 @@
 			<property name="policyConfiguration"	value="classpath:requiredUsernameToken-securityPolicy.xml" />
 			<property name="callbackHandlers" ref="springSecurityHandler">
 			</property>
-		</bean>
+		</bean> 
 	</sws:interceptors>
 
 	<!-- EXCEPTION RESOLVER -->
@@ -145,7 +145,5 @@
 	</bean>
 
 	<bean id="userDetailsService" class="server_endpoints.UserDetailService" />
-
-
 
 </beans>
