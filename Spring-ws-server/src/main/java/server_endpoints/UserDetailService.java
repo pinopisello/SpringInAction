@@ -9,8 +9,9 @@ public class UserDetailService implements UserDetailsService{
 
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return new UserDetailsImpl(username,"kpbetsuserpwd"){
+			
+		};
 	}
 
 }

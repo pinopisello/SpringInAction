@@ -57,7 +57,6 @@
 		<property name="interceptors">
 			<array>
 				<ref bean="interceptor1"/>
-				<ref bean="interceptor2"/>
 			</array>
 		</property>
 		<!--  <property name="faultMessageResolver" ref="simpleFaultMessageResolver"/> -->

@@ -95,11 +95,11 @@ public class SimpleJMSTestClient  extends CommonTestCase{
 	            	//header.addAttribute(new javax.xml.namespace.QName("http://ddddd.ff.dddddd", "","diamond"), "sss");//  public QName(String namespaceURI, String localPart, String prefix) {
 	            	*/
 	            	 SoapHeader header = ((SoapMessage)request).getSoapHeader();
-	            	 StringSource headerSource = new StringSource("<wsse:Security xmlns:wsse=\"http://schemas.xmlsoap.org/ws/2002/xx/secext\">"+
-				            "<wsse:UserNameToken>"+
-					            "<wsse:UserName>kpbetsuser</wsse:UserName>"+
+	            	 StringSource headerSource = new StringSource("<wsse:Security xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\">"+
+				            "<wsse:UsernameToken>"+
+					            "<wsse:Username>kpbetsuser</wsse:Username>"+
 					            "<wsse:Password>kpbetsuserpwd</wsse:Password>"+
-				            "</wsse:UserNameToken>"+
+				            "</wsse:UsernameToken>"+
 			            "</wsse:Security>");
 	                  Transformer transformer = TransformerFactory.newInstance().newTransformer();
 	                  transformer.transform(headerSource, header.getResult());

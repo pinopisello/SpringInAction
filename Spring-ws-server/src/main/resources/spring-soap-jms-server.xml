@@ -88,8 +88,7 @@
 	<!-- Iniettato nel costruttore di endpointAdapter Marshaller e endpointAdapter 
 		effecttuano il marshll/unmarshall prima che le requests colpicono gli endpoint, 
 		dopo che l'endpoint ha ritornato la risposta -->
-	<oxm:jaxb2-marshaller id="jaxb2marshaller"
-		contextPath="com.mycompany.hr.schemas" />
+	<oxm:jaxb2-marshaller id="jaxb2marshaller"	contextPath="com.mycompany.hr.schemas" />
 
 
 	<!-- ==== TUTTI COMPONENTI INSIEME NEL CONTAINER ===== -->
@@ -125,9 +124,6 @@
 		</bean> 
 	</sws:interceptors>
 
-	<!-- EXCEPTION RESOLVER -->
-	<bean id="mio_exception_resolver" class="server_endpoints.SimpleExceptionResolver" />
-
 
 	<bean id="springSecurityHandler"
 		class="org.springframework.ws.soap.security.xwss.callback.SpringPlainTextPasswordValidationCallbackHandler">
@@ -145,5 +141,9 @@
 	</bean>
 
 	<bean id="userDetailsService" class="server_endpoints.UserDetailService" />
+
+	<!-- EXCEPTION RESOLVER -->
+	<bean id="mio_exception_resolver" class="server_endpoints.SimpleExceptionResolver" />
+
 
 </beans>
